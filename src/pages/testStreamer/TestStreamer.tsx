@@ -16,7 +16,7 @@ const TestStreamer = () => {
   const [streamer, setStreamer] = useState<string>("test")
   const [testStream, setTestStream] = useState<MediaStream>()
 
-  const onClickStream = () => {
+  const onClickStream =() => {
     navigator.mediaDevices.getDisplayMedia({
       video: {
         width: {
@@ -29,9 +29,16 @@ const TestStreamer = () => {
         }
       },
       audio: true
-    }).then(stream => {
+    }).then( async (stream) =>  {
+      const soundStream = await navigator.mediaDevices.getUserMedia({
+        video: false,
+        audio: true
+      })
+      stream.addTrack(soundStream.getAudioTracks()[0])
+      const videoTrack = stream.getVideoTracks()[0]
+      const audioTrack = stream.getAudioTracks()[0]
+
       setTestStream(stream)
-      const track = stream.getVideoTracks()[0]
 
       const device : Device = new Device()
       socket.emit("start-and-get-rtpCapabilities", streamer, async (data : any) => {
@@ -68,8 +75,8 @@ const TestStreamer = () => {
               }
             })
 
-            const producer = await producerTransport.produce({
-              track       : track,
+            const videoProducer = await producerTransport.produce({
+              track       : videoTrack,
               encodings   :
                 [
                   { maxBitrate: 900000 }
@@ -92,12 +99,30 @@ const TestStreamer = () => {
                 }
               }
             })
-            producer.on('trackended', () => {
+            videoProducer.on('trackended', () => {
               console.log('track ended')
               // close video track
             })
 
-            producer.on('transportclose', () => {
+            videoProducer.on('transportclose', () => {
+              console.log('transport ended')
+              // close video track
+            })
+            const soundProducer = await producerTransport.produce({
+              track       : audioTrack,
+              codec: {
+                kind: "audio",
+                mimeType: "audio/opus",
+                clockRate: 48000,
+                channels    : 2
+              }
+            })
+            soundProducer.on('trackended', () => {
+              console.log('track ended')
+              // close video track
+            })
+
+            soundProducer.on('transportclose', () => {
               console.log('transport ended')
               // close video track
             })
@@ -110,7 +135,6 @@ const TestStreamer = () => {
   }
 
   async function loadDevice(device : Device, data : any) {
-    console.log("asdfasdf", data.rtpCapabilities)
     await device.load({
       routerRtpCapabilities: data.rtpCapabilities
     })
@@ -124,7 +148,7 @@ const TestStreamer = () => {
       <button onClick={onClickStream}>방송시작</button>
       {
         testStream ?
-          <ReactPlayer controls={true} width={"100%"} height={"830px"} url={testStream} /> :
+          <ReactPlayer controls={true} width={"100%"} height={"830px"} url={testStream} volume={1} muted={false}/> :
           <div>방송 시작 버튼을 눌러 주세요!</div>
       }
     </>

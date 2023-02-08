@@ -48,17 +48,26 @@ const TestClient = () => {
             console.log('Cannot Consume')
             return
           }
-          console.log(params.rtpParameters)
 
-          const consumer = await consumerTransport.consume({
-            id: params.id,
-            producerId: params.producerId,
-            kind: params.kind,
-            rtpParameters: params.rtpParameters
+          const tracks = []
+          const videoConsumer = await consumerTransport.consume({
+            id: params["video"].id,
+            producerId: params["video"].producerId,
+            kind: params["video"].kind,
+            rtpParameters: params["video"].rtpParameters
+          })
+
+          const soundConsumer = await consumerTransport.consume({
+            id: params["audio"].id,
+            producerId: params["audio"].producerId,
+            kind: params["audio"].kind,
+            rtpParameters: params["audio"].rtpParameters
           })
           await socket.emit('consumer-resume', viewer, streamer)
-          const {track} = consumer
-          setClientStream(new MediaStream([track]))
+
+          tracks.push(soundConsumer.track, videoConsumer.track)
+          console.log(tracks)
+          setClientStream(new MediaStream(tracks))
         })
       })
     })
@@ -70,7 +79,7 @@ const TestClient = () => {
       <button onClick={onClickView}>시청하기</button>
       {
         clientStream ?
-          <ReactPlayer controls={true} width={"100%"} height={"830px"} url={clientStream} /> :
+          <ReactPlayer controls={true} width={"100%"} height={"830px"} url={clientStream} volume={1} muted={false} /> :
           <div>시작하기를 눌러주세요</div>
       }
     </>
