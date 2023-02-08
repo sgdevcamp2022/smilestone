@@ -39,14 +39,14 @@ const Login = (props: IProps) => {
 
   const handleLogin = () => {
     loginUser(userId, password).then((result) => {
-      const { message, token, user } = result;
+      const { message, Authorization, user } = result;
       if (message === "INVALID_USER") {
         alert("아이디 또는 비밀번호가 잘못 되어있습니다.");
       } else if (message === "SUCCESS_LOGIN") {
         if (useSave) {
-          localStorage.setItem("token", token);
+          localStorage.setItem("Authorization", Authorization);
         } else {
-          sessionStorage.setItem("token", token);
+          sessionStorage.setItem("Authorization", Authorization);
         }
       }
       dispatch({
@@ -60,7 +60,7 @@ const Login = (props: IProps) => {
       setTimeout(() => {
         setVisible(false);
         setUseFadeOut(false);
-      }, 500);
+      }, 400);
       navigate("/");
     });
   };

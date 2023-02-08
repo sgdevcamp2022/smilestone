@@ -1,8 +1,7 @@
 import axios from "axios";
-import { SERVER_PORT } from "../config";
 
 async function loginUser(userId, password) {
-  return await fetch(`${SERVER_PORT}/signin`, {
+  return await fetch("/api/signin", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -16,12 +15,12 @@ async function loginUser(userId, password) {
     .then((data) => data);
 }
 
-async function getUserByToken(token) {
-  return await fetch(`${SERVER_PORT}/users/signin`, {
+async function getUserByToken(Authorization) {
+  return await fetch("/api/users/signin", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      token,
+      Authorization,
     },
   })
     .then((res) => res.json())
@@ -39,7 +38,7 @@ async function getUserByToken(token) {
 // };
 
 async function signupUser(userId, password, nickName) {
-  return await fetch("https://localhost:3000/signup", {
+  return await fetch("/api/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

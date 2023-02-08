@@ -1,4 +1,9 @@
-import React, { ChangeEvent, useState, useLayoutEffect } from "react";
+import React, {
+  useContext,
+  ChangeEvent,
+  useState,
+  useLayoutEffect,
+} from "react";
 import styled from "styled-components";
 import { theme } from "../../styles/theme";
 import {
@@ -16,6 +21,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { To, useNavigate, useLocation } from "react-router-dom";
 import Login from "../../components/login/Login";
 import Signup from "../../components/signup/SignUp";
+import { UserContext, UserDispatchContext } from "../../context/context";
 import { IProps } from "../../components/modal/Modal";
 const Logo = require("../../img/sMarketLogo.png");
 
@@ -80,6 +86,9 @@ const Header = (props: IProps) => {
   const [useOpenSignup, setUseOpenSignup] = useState(false);
   const [useOpenMypage, setUseOpenMypage] = useState(false);
 
+  const user = useContext(UserContext);
+  const dispatch = useContext(UserDispatchContext);
+
   useLayoutEffect(() => {
     setIsButtonClicked(false);
   }, [location.pathname]);
@@ -90,6 +99,16 @@ const Header = (props: IProps) => {
 
   const handleClick = () => {
     navigate("/search");
+  };
+
+  const handleLogout = () => {
+    const logoutconfirm = window.confirm("로그아웃 하시겠습니까?");
+    if (logoutconfirm) {
+      localStorage.removeItem("Authorization");
+      sessionStorage.removeItem("Authorization");
+      dispatch({ type: "LOGOUT" });
+      navigate("/");
+    }
   };
 
   const navigate = useNavigate();
@@ -130,20 +149,29 @@ const Header = (props: IProps) => {
           </NavButton>
 
           <NavMenu isButtonClicked={isButtonClicked}>
-            <li
-              onClick={() => {
-                setUseOpenLogin(true);
-              }}
-            >
-              로그인
-            </li>
-            <li
-              onClick={() => {
-                setUseOpenSignup(true);
-              }}
-            >
-              회원가입
-            </li>
+            {/* {user.userId !== "" ? (
+              <>
+                <li onClick={() => handleLogout()}>로그아웃</li>
+                <li onClick={() => handleNavigate("/mypage")}>마이페이지</li>
+              </>
+            ) : ( */}
+            <>
+              <li
+                onClick={() => {
+                  setUseOpenLogin(true);
+                }}
+              >
+                로그인
+              </li>
+              <li
+                onClick={() => {
+                  setUseOpenSignup(true);
+                }}
+              >
+                회원가입
+              </li>
+            </>
+            {/* )} */}
 
             <ChatButtonWrapper>
               <ChatButton
@@ -154,17 +182,6 @@ const Header = (props: IProps) => {
                 채팅하기
               </ChatButton>
             </ChatButtonWrapper>
-            {/* {user.id !== "" ? (
-              <>
-                <li onClick={() => handleLogout()}>로그아웃</li>
-                <li onClick={() => handleNavigate("/mypage")}>마이페이지</li>
-              </>
-            ) : (
-              <>
-                <li onClick={() => setUseOpenLogin(true)}>로그인</li>
-                <li onClick={() => setUseOpenSignup(true)}>회원가입</li>
-              </>
-            )}{" "} */}
           </NavMenu>
         </HeaderWrapper>
 
