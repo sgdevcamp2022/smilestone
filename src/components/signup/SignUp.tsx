@@ -3,7 +3,6 @@ import Modal, { IProps } from "../modal/Modal";
 import { useNavigate } from "react-router-dom";
 import { signupUser } from "../../apis/user";
 import { Block, MainWrapper } from "./SignUpStyled";
-import { AiFillCheckSquare } from "react-icons/ai";
 import styled from "styled-components";
 import { theme } from "../../styles/theme";
 
@@ -138,14 +137,14 @@ const Signup = (props: IProps) => {
       }, 500);
 
       console.log("회원가입 !");
-        window.alert("회원가입 되었습니다. 로그인 해주세요.");
+      window.alert("회원가입 되었습니다. 로그인 해주세요.");
       navigate("/");
     });
   };
 
   return (
     <Modal
-      title="sMarket 회원가입"
+      title="sMarket 가입"
       visible={visible}
       setVisible={setVisible}
       useFadeOut={useFadeOut}

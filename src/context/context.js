@@ -5,16 +5,8 @@ export const UserContext = createContext();
 export const UserDispatchContext = createContext();
 
 const initialUser = {
-  id: "",
-  nickname: "",
-  city: {
-    id: "",
-    cityName: "",
-  },
-  district: {
-    id: "",
-    districtName: "",
-  },
+  userId: "",
+  nickName: "",
 };
 
 function userReducer(state, action) {
@@ -31,17 +23,17 @@ function userReducer(state, action) {
 
 export function ContextProvider({ children }) {
   const [user, userDispatch] = useReducer(userReducer, initialUser);
-  const token = localStorage.getItem("token")
-    ? localStorage.getItem("token")
-    : sessionStorage.getItem("token");
+  const Authorization = localStorage.getItem("Authorization")
+    ? localStorage.getItem("Authorization")
+    : sessionStorage.getItem("Authorization");
 
   useEffect(() => {
-    if (token && user.id === "") {
-      getUserByToken(token).then((data) =>
+    if (Authorization && user.userId === "") {
+      getUserByToken(Authorization).then((data) =>
         userDispatch({ type: "LOGIN", payload: data.user })
       );
     }
-  }, [token, user.id]);
+  }, [Authorization, user.userId]);
 
   return (
     <UserContext.Provider value={user}>
