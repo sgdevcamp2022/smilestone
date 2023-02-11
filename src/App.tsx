@@ -5,6 +5,7 @@ import Header from "./nav/header/Header";
 import Footer from "./nav/footer/Footer";
 import TestClient from "./pages/testClient/TestClient";
 import TestStreamer from "./pages/testStreamer/TestStreamer";
+import TestChat from "./pages/testChat/TestChat"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/test-client" element={<TestClient />} />
           <Route path="/test-streamer" element={<TestStreamer />} />
+          <Route path="/test-chat" element={<TestChat />} />
         </Routes>
         <Footer />
       </div>

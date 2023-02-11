@@ -1,5 +1,5 @@
 import {Device} from "mediasoup-client";
-import {io} from "socket.io-client";
+import {io, Socket} from "socket.io-client";
 import {
   Level4_1,
   ProfileConstrainedHigh,
@@ -10,11 +10,10 @@ import {
 import {useState} from "react";
 import ReactPlayer from "react-player";
 
-const socket = io("43.200.154.60:3000/mediasoup")
-
 const TestStreamer = () => {
   const [streamer, setStreamer] = useState<string>("test")
   const [testStream, setTestStream] = useState<MediaStream>()
+  const [socket, setSocket] = useState<Socket>(io("43.200.154.60:3000/mediasoup"))
 
   const onClickStream =() => {
     navigator.mediaDevices.getDisplayMedia({

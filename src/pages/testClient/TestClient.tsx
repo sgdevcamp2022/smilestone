@@ -1,15 +1,14 @@
-import {io} from "socket.io-client";
+import {io, Socket} from "socket.io-client";
 import {Device} from "mediasoup-client";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Transport} from "mediasoup-client/lib/Transport";
 import ReactPlayer from "react-player";
-
-const socket = io("43.200.154.60:3000/mediasoup")
 
 const TestClient = () => {
   const [clientStream, setClientStream] = useState<MediaStream>()
   const [streamer, setStreamer] = useState("test")
   const [viewer, setViewer] = useState("testee")
+  const [socket, setSocket] = useState<Socket>(io("43.200.154.60:3000/mediasoup"))
 
   const onClickView = () => {
     socket.emit("get-rtpCapabilities", viewer, streamer, async (data : any) => {
@@ -72,7 +71,6 @@ const TestClient = () => {
       })
     })
   }
-
 
   return (
     <>
