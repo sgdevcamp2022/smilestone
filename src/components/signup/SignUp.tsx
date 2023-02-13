@@ -95,29 +95,10 @@ const Signup = (props: IProps) => {
     setNickName(e.target.value);
   };
 
-  //   const handleCheckId = () => {
-  //     duplicateIdCheck(userId).then((data) => {
-  //       if (data.message === "EXSITING_USER") {
-  //         alert("이미 아이디가 존재합니다.");
-  //         return;
-  //       }
-  //       alert("사용 가능한 아이디 입니다.");
-  //       setUseIdCheck(true);
-  //     });
-  //   };
-
-  //   const handleDistrict = (value) => {
-  //     setUseDistrict(value);
-  //   };
-
   const handleSignup = () => {
     if (userId === "" || password === "") {
       return alert("아이디 또는 패스워드를 입력 해주세요");
     }
-
-    // if (userId !== "" && !useIdCheck) {
-    //   return alert("아이디 중복확인을 해주세요");
-    // }
 
     if (!idChecked || !pwChecked) {
       return alert("아이디 또는 패스워드를 확인 해주세요");
@@ -148,9 +129,6 @@ const Signup = (props: IProps) => {
       visible={visible}
       setVisible={setVisible}
       useFadeOut={useFadeOut}
-      // closeBtn={true}
-      // width="100px"
-      // height="700px"
     >
       <MainWrapper>
         <Block>
@@ -165,12 +143,6 @@ const Signup = (props: IProps) => {
                 maxLength={12}
                 placeholder="로그인 시 사용할 아이디를 입력 해주세요"
               />
-              {/* <button
-                onClick={handleCheckId}
-                disabled={!idChecked || userId === ""}
-              >
-                중복확인
-              </button> */}
             </InputIdWrapper>
           </InputWrapper>
           <InputWrapper isChecked={pwChecked}>

@@ -149,29 +149,17 @@ const Header = (props: IProps) => {
           </NavButton>
 
           <NavMenu isButtonClicked={isButtonClicked}>
-            {/* {user.userId !== "" ? (
+            {user?.id !== "" ? (
+              <>
+                <li onClick={() => setUseOpenLogin(true)}>로그인</li>
+                <li onClick={() => setUseOpenSignup(true)}>회원가입</li>
+              </>
+            ) : (
               <>
                 <li onClick={() => handleLogout()}>로그아웃</li>
                 <li onClick={() => handleNavigate("/mypage")}>마이페이지</li>
               </>
-            ) : ( */}
-            <>
-              <li
-                onClick={() => {
-                  setUseOpenLogin(true);
-                }}
-              >
-                로그인
-              </li>
-              <li
-                onClick={() => {
-                  setUseOpenSignup(true);
-                }}
-              >
-                회원가입
-              </li>
-            </>
-            {/* )} */}
+            )}
 
             <ChatButtonWrapper>
               <ChatButton
