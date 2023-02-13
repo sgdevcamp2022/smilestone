@@ -20,12 +20,10 @@ const Logo = require("../../img/sMarketLogo.png");
 const Login = (props: IProps) => {
   const { visible, setVisible, setOpenSignup } = props;
   const dispatch = useContext(UserDispatchContext);
-  // const [user, setUser] = userRecoilState(userState);
   const navigate = useNavigate();
 
-  const [userId, setId] = useState("");
+  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const [useSave, setUseSave] = useState(false);
   const [useFadeOut, setUseFadeOut] = useState(false);
 
   const goToSignup = () => {
@@ -38,29 +36,26 @@ const Login = (props: IProps) => {
   };
 
   const handleLogin = () => {
-    loginUser(userId, password).then((result) => {
-      const { message, Authorization, user } = result;
-      if (message === "INVALID_USER") {
-        alert("아이디 또는 비밀번호가 잘못 되어있습니다.");
-      } else if (message === "SUCCESS_LOGIN") {
-        if (useSave) {
-          localStorage.setItem("Authorization", Authorization);
-        } else {
-          sessionStorage.setItem("Authorization", Authorization);
-        }
-      }
+    loginUser(id, password).then((result) => {
+      const { user } = result;
+
+      localStorage.setItem("accesstoken", result.data.tokens.access_token);
+      localStorage.setItem("refreshtoken", result.data.tokens.refresh_token);
+
       dispatch({
         type: "LOGIN",
         payload: {
-          userId: user.userId,
-          nickName: user.nickName,
+          userId: user.id,
+          nickName: user.nickname,
         },
       });
+
       setUseFadeOut(true);
       setTimeout(() => {
         setVisible(false);
         setUseFadeOut(false);
-      }, 400);
+      }, 500);
+      window.alert("로그인 성공");
       navigate("/");
     });
   };
@@ -82,7 +77,8 @@ const Login = (props: IProps) => {
       handleLogin();
     }
   };
-  const isValidButton = isValidId(userId) && isValidPw(password);
+
+  const isValidButton = isValidId(id) && isValidPw(password);
 
   function isValidId(str: string) {
     const regId = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{5,12}$/;
@@ -111,8 +107,8 @@ const Login = (props: IProps) => {
             onKeyDown={handleEnter}
             type="text"
             placeholder="아이디를 입력하세요"
-            id="userId"
-            name="userId"
+            id="id"
+            name="id"
             required
           />
           <Password
