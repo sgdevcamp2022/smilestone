@@ -21,42 +21,30 @@ const Editor = (props) => {
   const [allContents, setAllContents] = useState({
     title: "",
     categoryId: NaN,
-    userId: NaN,
+    sellerId: NaN,
     price: "0",
-    description: "",
+    content: "",
   }); //게시글 정보 묶어서 저장
 
-  const { selectedImage } = props;
-
   // 카테고리 받아와서 넘기기 위한 State
-  const [category, setCategory] = useState({
-    categories: [
-      {
-        id: 0,
-        categoryName: "",
-      },
-    ],
-  });
+  // const [category, setCategory] = useState({
+  //   categories: [
+  //     {
+  //       id: 0,
+  //       categoryName: "",
+  //     },
+  //   ],
+  // });
 
-  useEffect(() => {
-    fetch("#", {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setCategory(data);
-      });
-  }, []);
-
-  //이미지 url 폼데이터로 변환 하는 함수
-  const handleURLs = () => {
-    const formData = new FormData();
-    for (let i = 0; i < selectedImage.length; i++) {
-      formData.append("images", selectedImage[i]);
-    }
-
-    return formData;
-  };
+  // useEffect(() => {
+  //   fetch("/categories", {
+  //     method: "GET",
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setCategory(data);
+  //     });
+  // }, []);
 
   //가격정보 저장과 원 이모티콘 색 변환을 위한 불리언 값 저장
   const onPriceChange = (e) => {
@@ -76,23 +64,23 @@ const Editor = (props) => {
     });
   };
   //선택된 카테고리 저장
-  const onCategorySelect = (e) => {
-    setAllContents({ ...allContents, categoryId: e.target.value });
-  };
+  // const onCategorySelect = (e) => {
+  //   setAllContents({ ...allContents, categoryId: e.target.value });
+  // };
 
   //게시글 내용을 저장하는 함수
   const handleSubmit = () => {
     setAllContents({
       ...allContents,
-      userId: user.id,
+      // userId: user.id,
     });
     const descriptionText = quillElement.current.innerText;
-    return { ...allContents, description: descriptionText };
+    return { ...allContents, content: descriptionText };
   };
 
-  const onCategoryNotSelected = () => {
-    categorySelection.current.focus();
-  };
+  // const onCategoryNotSelected = () => {
+  //   categorySelection.current.focus();
+  // };
 
   const goToDetail = () => {
     navigate(`/api/product/all`, {
@@ -104,8 +92,7 @@ const Editor = (props) => {
   //완료 버튼 클릭시 인풋 값 확인 후 전송
   const onButtonClick = async () => {
     const sendableResult = handleSubmit();
-    const imageResult = handleURLs();
-    if (sendableResult.description.length < 5) {
+    if (sendableResult.content.length < 5) {
       alert("내용을 5자 이상 등록해주세요");
       return;
     }
@@ -113,18 +100,18 @@ const Editor = (props) => {
       alert("제목을 더 입력해주세요");
       return;
     }
-    if (!sendableResult.categoryId || sendableResult.categoryId === "0") {
-      onCategoryNotSelected();
-      alert("카테고리를 선택해주세요");
-      return;
-    }
-    if (selectedImage.length < 1) {
-      alert("사진을 등록해주세요");
-      return;
-    } else {
-      postProduct(sendableResult, imageResult).then((data) => {
+    // if (!sendableResult.categoryId || sendableResult.categoryId === "0") {
+    //   onCategoryNotSelected();
+    //   alert("카테고리를 선택해주세요");
+    //   return;
+    // }
+    else {
+      postProduct(sendableResult).then((data) => {
         productId = data.productId;
         data.productId && goToDetail();
+
+        console.log("글 게시 성공 !");
+        window.alert("글이 게시되었습니다 !");
       });
     }
   };
@@ -154,7 +141,7 @@ const Editor = (props) => {
               max="999999999"
             />
           </PriceWrapper>
-          <CatergoryWrapper onChange={(e) => e.target.blur()}>
+          {/* <CatergoryWrapper onChange={(e) => e.target.blur()}>
             <CategorySelect
               ref={selectBox}
               required
@@ -172,7 +159,7 @@ const Editor = (props) => {
                 </DropDown>
               ))}
             </CategorySelect>
-          </CatergoryWrapper>
+          </CatergoryWrapper> */}
         </PriceAndCategoryWrapper>
         <EditorWrapper>
           <QuillWrapper>

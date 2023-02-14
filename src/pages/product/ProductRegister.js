@@ -217,7 +217,7 @@ const Register = () => {
     <>
       <WholeWrapper>
         <RegisterWrapper>
-          <PhotoLine>
+          {/* <PhotoLine>
             <PhotoForm
               onClick={handleClick}
               action="/profile"
@@ -260,7 +260,7 @@ const Register = () => {
                 />
               </div>
             ))}
-          </PhotoLine>
+          </PhotoLine> */}
 
           {/* <PhotoModal onClick={() => setOpenModal(false)} open={openModal}>
             <ModalPhotoLine>
