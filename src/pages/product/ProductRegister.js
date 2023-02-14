@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { BsFillCameraFill } from "react-icons/bs";
 import { TiDelete } from "react-icons/ti";
-// import Editor from "./Editor";
+import Editor from "./Editor";
 
 //styled-components 시작
 
@@ -262,7 +262,7 @@ const Register = () => {
             ))}
           </PhotoLine>
 
-          <PhotoModal onClick={() => setOpenModal(false)} open={openModal}>
+          {/* <PhotoModal onClick={() => setOpenModal(false)} open={openModal}>
             <ModalPhotoLine>
               <TiDelete
                 className="modalTurnOff"
@@ -278,8 +278,8 @@ const Register = () => {
                 </ModalImageContainer>
               ))}
             </ModalPhotoLine>
-          </PhotoModal>
-          {/* <Editor selectedImage={selectedImage} /> */}
+          </PhotoModal> */}
+          <Editor selectedImage={selectedImage} />
         </RegisterWrapper>
       </WholeWrapper>
     </>
