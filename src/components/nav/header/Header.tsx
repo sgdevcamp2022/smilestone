@@ -5,7 +5,7 @@ import React, {
   useLayoutEffect,
 } from "react";
 import styled from "styled-components";
-import { theme } from "../../styles/theme";
+import { theme } from "../../../styles/theme";
 import {
   HeaderSize,
   HeaderWrapper,
@@ -15,14 +15,14 @@ import {
   NavButton,
   ChatButtonWrapper,
   ChatButton,
-} from "../header/HeaderStyled";
+} from "./HeaderStyled";
 import { IoSearchOutline } from "react-icons/io5";
 import { AiOutlineMenu } from "react-icons/ai";
 import { To, useNavigate, useLocation } from "react-router-dom";
-import Login from "../../components/login/Login";
-import Signup from "../../components/signup/SignUp";
-import { UserContext, UserDispatchContext } from "../../context/context";
-import { IProps } from "../../components/modal/Modal";
+import Login from "../../login/Login";
+import Signup from "../../signup/SignUp";
+import { UserContext, UserDispatchContext } from "../../../context/context";
+import { IProps } from "../../modal/Modal";
 const Logo = require("../../img/sMarketLogo.png");
 
 interface BProps {

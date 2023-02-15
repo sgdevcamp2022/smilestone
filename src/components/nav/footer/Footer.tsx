@@ -4,7 +4,7 @@ import {
   FooterWrapper,
   LinkToGitWrapper,
   License,
-} from "../footer/FooterStyled";
+} from "./FooterStyled";
 const Logo = require("../../img/sMarketLogo.png");
 
 interface IMemberProps {
