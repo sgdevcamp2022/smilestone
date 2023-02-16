@@ -5,7 +5,7 @@ import {
   LinkToGitWrapper,
   License,
 } from "./FooterStyled";
-const Logo = require("../../img/sMarketLogo.png");
+const Logo = require("../../../assets/images/sMarketLogo.png");
 
 interface IMemberProps {
   name: string;

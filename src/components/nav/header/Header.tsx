@@ -23,7 +23,7 @@ import Login from "../../login/Login";
 import Signup from "../../signup/SignUp";
 import { UserContext, UserDispatchContext } from "../../../context/context";
 import { IProps } from "../../modal/Modal";
-const Logo = require("../../img/sMarketLogo.png");
+const Logo = require("../../../assets/images/sMarketLogo.png");
 
 interface BProps {
   isButtonClicked: Boolean;

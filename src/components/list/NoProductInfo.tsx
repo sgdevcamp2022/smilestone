@@ -32,7 +32,7 @@
 // export default NoProductInfo;
 
 const NoProductInfo = () => {
-  return <>product</>;
+  return <h1>No Product...</h1>;
 };
 
 export default NoProductInfo;
