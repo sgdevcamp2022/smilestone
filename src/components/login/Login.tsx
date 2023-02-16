@@ -15,7 +15,7 @@ import {
   Usersign,
   Usersignup,
 } from "./LoginStyled";
-const Logo = require("../../img/sMarketLogo.png");
+const Logo = require("../../assets/images/sMarketLogo.png");
 
 const Login = (props: IProps) => {
   const { visible, setVisible, setOpenSignup } = props;

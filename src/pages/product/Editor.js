@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { usePrompt } from "../../hoc/blocker";
+import { usePrompt } from "../../hooks/blocker";
 import Quill from "quill";
 import "quill/dist/quill.bubble.css";
 import styled from "styled-components";
@@ -56,6 +56,7 @@ const Editor = (props) => {
     } else setPriceInput(true);
     setAllContents({ ...allContents, price: e.target.value });
   };
+
   //제목 저장
   const onChangeTitle = (e) => {
     setAllContents({
@@ -63,6 +64,7 @@ const Editor = (props) => {
       title: e.target.value,
     });
   };
+
   //선택된 카테고리 저장
   // const onCategorySelect = (e) => {
   //   setAllContents({ ...allContents, categoryId: e.target.value });

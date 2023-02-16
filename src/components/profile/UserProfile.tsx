@@ -1,7 +1,7 @@
 import React from "react";
 // import { CLIENT_PORT } from "config";
 import styled from "styled-components";
-const Logo = require("../../img/sMarketLogo.png");
+const Logo = require("../../assets/images/sMarketLogo.png");
 
 const MainWrapper = styled.div`
   display: flex;

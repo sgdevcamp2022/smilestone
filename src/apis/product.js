@@ -13,4 +13,14 @@ async function postProduct(sendableResult) {
     .then((data) => data);
 }
 
-export { postProduct };
+async function getProductList() {
+  return await fetch(`/api/product/list/all`, {
+    headers: {
+      token: localStorage.getItem("token"),
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => data);
+}
+
+export { postProduct, getProductList };
