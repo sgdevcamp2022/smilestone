@@ -3,34 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { priceFormat } from "../../utils/format";
 
-const ProductInfoListCard = (data, maxWidth) => {
-  const navigate = useNavigate();
-  const { id, title, price, chatRoom } = data;
-
-  return (
-    <CardWrapper
-      maxWidth={maxWidth}
-      onClick={() => {
-        navigate(`/product/detail`, { state: { productId: id } });
-      }}
-    >
-      <ListCardWrapper>
-        {/* <ImageWrapper>
-          <ImageItself src={`/${productImage[0]?.imageUrl}`} alt="image" />
-        </ImageWrapper> */}
-        <LettersWrapper>
-          <ProductTitle>{title}</ProductTitle>
-          <ProductPrice>{priceFormat(price)}</ProductPrice>
-
-          <InterestedWrapped>
-            {/* <Chats> 채팅 {chatRoom.length}</Chats> */}
-          </InterestedWrapped>
-        </LettersWrapper>
-      </ListCardWrapper>
-    </CardWrapper>
-  );
-};
-
 const CardWrapper = styled.div`
   justify-content: center;
   padding-bottom: 40px;
@@ -67,6 +39,48 @@ const ListCardWrapper = styled.div`
   }
   // 모니터
   @media (min-width: 891px) {
+  }
+`;
+
+const ImageWrapper = styled.div`
+  display: flex;
+  flex: none;
+  aspect-ratio: 1/1;
+  margin: auto;
+  @media (max-width: 690px) {
+    width: 200px;
+  }
+  // 아이패드 (모바일 버전)
+  @media (min-width: 691px) and (max-width: 890px) {
+    width: 210px;
+  }
+  // 모니터
+  @media (min-width: 891px) {
+    width: 220px;
+    height: auto;
+  }
+`;
+
+const ImageItself = styled.img`
+  display: block;
+  border-radius: 15px;
+  border: 1px solid silver;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  width: 100%;
+  @media (max-width: 690px) {
+    /* margin: 0 5%; */
+    width: 200px;
+  }
+  // 아이패드 (모바일 버전)
+  @media (min-width: 691px) and (max-width: 890px) {
+    width: 210px;
+    /* margin: 0 2%; */
+  }
+  // 모니터
+  @media (min-width: 891px) {
+    width: 220px;
+    /* margin: 0 2%; */
   }
 `;
 
@@ -135,5 +149,36 @@ const InterestedWrapped = styled.div`
 const Interested = styled.p``;
 
 const Chats = styled.p``;
+
+const ProductInfoListCard = ({ data, maxWidth }) => {
+  const navigate = useNavigate();
+  const { id, title, price } = data;
+
+  return (
+    <CardWrapper
+      maxWidth={maxWidth}
+      onClick={() => {
+        navigate(`/product/detail`, { state: { productId: id } });
+      }}
+    >
+      <ListCardWrapper>
+        <ImageWrapper>
+          <ImageItself
+            src={`../../../assets/images/sMarketLogo.png`}
+            alt="image"
+          />
+        </ImageWrapper>
+        <LettersWrapper>
+          <ProductTitle>{title}</ProductTitle>
+          <ProductPrice>{priceFormat(price)}</ProductPrice>
+
+          <InterestedWrapped>
+            {/* <Chats> 채팅 {chatRoom.length}</Chats> */}
+          </InterestedWrapped>
+        </LettersWrapper>
+      </ListCardWrapper>
+    </CardWrapper>
+  );
+};
 
 export default ProductInfoListCard;

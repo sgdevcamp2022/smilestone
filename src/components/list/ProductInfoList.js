@@ -1,23 +1,6 @@
 import styled from "styled-components";
-// import NoProductInfo from "./NoProductInfo";
+import NoProductInfo from "./NoProductInfo";
 import ProductInfoListCard from "./ProductInfoListCard";
-
-function ProductInfoList(props) {
-  const { data } = props;
-
-  return (
-    <AllWrapper>
-      <ListWrapper>
-        {data.map((data) => (
-          <ProductInfoListCard key={data.id} data={data} />
-        ))}
-        {<MoreView> 더보기 </MoreView>}
-      </ListWrapper>
-    </AllWrapper>
-  );
-}
-
-export default ProductInfoList;
 
 const AllWrapper = styled.div`
   display: grid;
@@ -59,3 +42,28 @@ const MoreView = styled.button`
   color: #858e96;
   font-size: 16px;
 `;
+
+const ProductInfoList = (props) => {
+  const { maxWidth, data } = props;
+
+  console.log(maxWidth);
+  console.log(data);
+
+  return (
+    <AllWrapper>
+      <ListWrapper>
+        {data &&
+          data.map((data) => (
+            <ProductInfoListCard
+              key={data.id}
+              data={data}
+              maxWidth={maxWidth}
+            />
+          ))}
+        {maxWidth === 800 && <MoreView> 더보기 </MoreView>}
+      </ListWrapper>
+    </AllWrapper>
+  );
+};
+
+export default ProductInfoList;

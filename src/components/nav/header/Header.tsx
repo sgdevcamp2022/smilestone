@@ -104,8 +104,8 @@ const Header = (props: IProps) => {
   const handleLogout = () => {
     const logoutconfirm = window.confirm("로그아웃 하시겠습니까?");
     if (logoutconfirm) {
-      localStorage.removeItem("Authorization");
-      sessionStorage.removeItem("Authorization");
+      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
       dispatch({ type: "LOGOUT" });
       navigate("/");
     }

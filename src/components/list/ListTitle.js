@@ -1,11 +1,8 @@
 import styled from "styled-components";
-import { DProps } from "./ProductInfoListCard";
 
-function ListTitle(props: DProps) {
-  return <TitleWrapper>{props.title}</TitleWrapper>;
-}
-
-// export default ListTitle;
+const ListTitle = ({ title }) => {
+  return <TitleWrapper>{title}</TitleWrapper>;
+};
 
 const TitleWrapper = styled.div`
   display: flex;

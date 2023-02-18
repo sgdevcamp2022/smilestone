@@ -41,26 +41,22 @@ const ProductInfoDelay = () => {
   const [loading, setLoading] = useState(true);
   const [isLogin, setIsLogin] = useState(Boolean);
   const [productInfoData, setProductInfoData] = useState([]);
-  // useEffect(() => {
-  //   setIsLogin(Boolean);
-  // }, [user]);
-  // useEffect(() => {
-  //   isLogin
-  //     ? getProductList().then((data) => {
-  //         setProductInfoData(data.productList);
-  //         setLoading(false);
-  //       })
-  //     : getProductList().then((data) => {
-  //         setProductInfoData(data.bestProducts);
-  //         setLoading(false);
-  //       });
-  // }, [isLogin]);
-  return isLogin ? (
-    <>
-      {/* <ProductInfoWhenLogin data={productInfoData} user={user} /> */}
-      {/* <RegisterButton /> */}
-    </>
-  ) : (
+  useEffect(() => {
+    setIsLogin(Boolean);
+  }, [user]);
+
+  useEffect(() => {
+    isLogin
+      ? getProductList().then((data) => {
+          setProductInfoData(data.productList);
+          setLoading(false);
+        })
+      : getProductList().then((data) => {
+          setProductInfoData(data.productList);
+          setLoading(false);
+        });
+  }, [isLogin]);
+  return (
     <>
       <ProductInfo />
       {/* <RegisterButton /> */}
@@ -68,7 +64,7 @@ const ProductInfoDelay = () => {
   );
 };
 
-//로그인시 매물리스트 함수
+//로그인시 리스트
 // const ProductInfoWhenLogin = ({ data, user }) => {
 //   const productList = data;
 //   return (
@@ -87,28 +83,28 @@ const ProductInfoDelay = () => {
 //   );
 // };
 
-//비로그인시 인기 매물 리스트, 기본은 베스트, 지역 선택시 해당 지역
+//비로그인시 기본 리스트
 
 const ProductInfo = () => {
   const [productListResult, setProductListResult] = useState();
   useEffect(() => {
-    getProductList().then((data) => setProductListResult(data.Products));
+    getProductList().then((data) => setProductListResult(data.products));
   }, []);
   return (
-    productListResult && (
-      <>
-        <ListTitle title={`기술 게시판`} />
+    // productListResult && (
+    <>
+      <ListTitle title={`기술 게시판`} />
 
-        <WholeWrapper>
-          <ContentsWrapper>
-            <ListWrapper>
-              <ProductInfoList maxWidth={1024} data={productListResult} />
-            </ListWrapper>
-          </ContentsWrapper>
-        </WholeWrapper>
-      </>
-    )
+      <WholeWrapper>
+        <ContentsWrapper>
+          <ListWrapper>
+            <ProductInfoList maxWidth={1024} data={productListResult} />
+          </ListWrapper>
+        </ContentsWrapper>
+      </WholeWrapper>
+    </>
   );
+  // );
 };
 
 export default ProductInfoDelay;
