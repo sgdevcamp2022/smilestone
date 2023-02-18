@@ -41,21 +41,16 @@ const ProductInfoDelay = () => {
   const [loading, setLoading] = useState(true);
   const [isLogin, setIsLogin] = useState(Boolean);
   const [productInfoData, setProductInfoData] = useState([]);
-  useEffect(() => {
-    setIsLogin(Boolean);
-  }, [user]);
 
-  useEffect(() => {
-    isLogin
-      ? getProductList().then((data) => {
-          setProductInfoData(data.productList);
-          setLoading(false);
-        })
-      : getProductList().then((data) => {
-          setProductInfoData(data.productList);
-          setLoading(false);
-        });
-  }, [isLogin]);
+  // useEffect(() => {
+  //   setIsLogin(Boolean);
+  // }, [user]);
+
+  getProductList().then((data) => {
+    setProductInfoData(data.productList);
+    setLoading(false);
+  });
+
   return (
     <>
       <ProductInfo />
@@ -84,27 +79,26 @@ const ProductInfoDelay = () => {
 // };
 
 //비로그인시 기본 리스트
+const ProductInfo = ({ data }) => {
+  const productList = data;
 
-const ProductInfo = () => {
-  const [productListResult, setProductListResult] = useState();
-  useEffect(() => {
-    getProductList().then((data) => setProductListResult(data.products));
-  }, []);
   return (
-    // productListResult && (
     <>
       <ListTitle title={`기술 게시판`} />
 
       <WholeWrapper>
         <ContentsWrapper>
-          <ListWrapper>
-            <ProductInfoList maxWidth={1024} data={productListResult} />
-          </ListWrapper>
+          {productList ? (
+            <ListWrapper>
+              <ProductInfoList maxWidth={1024} data={productList} />
+            </ListWrapper>
+          ) : (
+            <NoProductInfo />
+          )}
         </ContentsWrapper>
       </WholeWrapper>
     </>
   );
-  // );
 };
 
 export default ProductInfoDelay;

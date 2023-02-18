@@ -21,11 +21,9 @@ function userReducer(state, action) {
   }
 }
 
-export function ContextProvider({ children }) {
+export const ContextProvider = ({ children }) => {
   const [user, userDispatch] = useReducer(userReducer, initialUser);
-  const token = localStorage.getItem("token")
-    ? localStorage.getItem("token")
-    : sessionStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     if (token && user.id === "") {
@@ -42,4 +40,4 @@ export function ContextProvider({ children }) {
       </UserDispatchContext.Provider>
     </UserContext.Provider>
   );
-}
+};

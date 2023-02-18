@@ -170,7 +170,7 @@ const ProductInfoListCard = ({ data, maxWidth }) => {
         </ImageWrapper>
         <LettersWrapper>
           <ProductTitle>{title}</ProductTitle>
-          <ProductPrice>{priceFormat(price)}</ProductPrice>
+          {/* <ProductPrice>{priceFormat(price)}</ProductPrice> */}
 
           <InterestedWrapped>
             {/* <Chats> 채팅 {chatRoom.length}</Chats> */}

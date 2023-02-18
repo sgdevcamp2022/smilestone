@@ -3,6 +3,7 @@ async function loginUser(userId, password) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: localStorage.getItem("login-token"),
     },
     body: JSON.stringify({
       userId,

@@ -85,7 +85,7 @@ const Editor = (props) => {
   // };
 
   const goToDetail = () => {
-    navigate(`/api/product/all`, {
+    navigate(`/product`, {
       state: { productId: productId },
       replace: true,
     });
@@ -299,9 +299,3 @@ const SubmitButton = styled.button`
 `;
 
 export default Editor;
-
-// const Editor = () => {
-//   return <>editor</>;
-// };
-
-// export default Editor;
