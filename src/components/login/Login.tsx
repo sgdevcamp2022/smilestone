@@ -4,7 +4,7 @@ import { loginUser } from "../../apis/user.js";
 import { UserDispatchContext } from "../../context/context";
 import { useNavigate } from "react-router-dom";
 // components
-import Modal, { IProps } from "../../components/modal/Modal";
+import Modal, { IProps } from "../modal/Modal";
 // styles
 import {
   LoginBox,
@@ -36,17 +36,17 @@ const Login = (props: IProps) => {
   };
 
   const handleLogin = () => {
-    loginUser(id, password).then((result) => {
-      const { user } = result;
+    loginUser(id, password).then((response) => {
+      const { user } = response;
 
-      localStorage.setItem("accesstoken", result.data.tokens.access_token);
-      localStorage.setItem("refreshtoken", result.data.tokens.refresh_token);
-
+      if (response.ACCESS_TOKEN) {
+        localStorage.setItem("login-token", response.ACCESS_TOKEN);
+      }
       dispatch({
         type: "LOGIN",
         payload: {
-          userId: user.id,
-          nickName: user.nickname,
+          id: user?.id,
+          nickname: user?.nickname,
         },
       });
 

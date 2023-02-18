@@ -105,7 +105,6 @@ const Header = (props: IProps) => {
     const logoutconfirm = window.confirm("로그아웃 하시겠습니까?");
     if (logoutconfirm) {
       localStorage.removeItem("token");
-      sessionStorage.removeItem("token");
       dispatch({ type: "LOGOUT" });
       navigate("/");
     }
@@ -151,13 +150,13 @@ const Header = (props: IProps) => {
           <NavMenu isButtonClicked={isButtonClicked}>
             {user?.id !== "" ? (
               <>
-                <li onClick={() => setUseOpenLogin(true)}>로그인</li>
-                <li onClick={() => setUseOpenSignup(true)}>회원가입</li>
+                <li onClick={() => handleLogout()}>로그아웃</li>
+                <li onClick={() => handleNavigate("/mypage")}>마이페이지</li>
               </>
             ) : (
               <>
-                <li onClick={() => handleLogout()}>로그아웃</li>
-                <li onClick={() => handleNavigate("/mypage")}>마이페이지</li>
+                <li onClick={() => setUseOpenLogin(true)}>로그인</li>
+                <li onClick={() => setUseOpenSignup(true)}>회원가입</li>
               </>
             )}
 
