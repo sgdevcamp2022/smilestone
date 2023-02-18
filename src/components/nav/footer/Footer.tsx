@@ -42,8 +42,6 @@ const member: Array<IMemberProps> = [
 ];
 
 const Footer = () => {
-  // const location = useLocation();
-
   return (
     <>
       <FooterSize>
@@ -52,7 +50,7 @@ const Footer = () => {
             <img src={Logo} alt="logo" width="200px" height="100px" />
             <LinkToGitWrapper>
               {member.map(({ name, stack, githubId }) => (
-                <div>
+                <div key={githubId}>
                   <h2>
                     {name} {stack}
                   </h2>
