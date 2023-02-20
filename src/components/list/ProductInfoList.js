@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import NoProductInfo from "./NoProductInfo";
 import ProductInfoListCard from "./ProductInfoListCard";
 
 const AllWrapper = styled.div`
@@ -45,9 +44,6 @@ const MoreView = styled.button`
 
 const ProductInfoList = (props) => {
   const { maxWidth, data } = props;
-
-  console.log(maxWidth);
-  console.log(data);
 
   return (
     <AllWrapper>

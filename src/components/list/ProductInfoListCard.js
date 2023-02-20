@@ -146,8 +146,6 @@ const InterestedWrapped = styled.div`
   font-size: 13px;
 `;
 
-const Interested = styled.p``;
-
 const Chats = styled.p``;
 
 const ProductInfoListCard = ({ data, maxWidth }) => {

@@ -4,8 +4,9 @@ import { ContextProvider } from "./context/context";
 import Main from "./pages/main/Main";
 import Header from "./components/nav/header/Header";
 import Footer from "./components/nav/footer/Footer";
-import ProductList from "./pages/product/ProductInfo";
+import ProductInfoDelay from "./pages/product/ProductInfo";
 import ProductRegister from "./pages/product/ProductRegister";
+import Chat from "./pages/chat/Chat";
 import Mypage from "./pages/MyPage";
 
 function App() {
@@ -16,9 +17,10 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/product" element={<ProductList />} />
+            <Route path="/product" element={<ProductInfoDelay />} />
             <Route path="/product/register" element={<ProductRegister />} />
             <Route path="/mypage" element={<Mypage />} />
+            <Route path="/chat" element={<Chat />} />
           </Routes>
           <Footer />
         </div>

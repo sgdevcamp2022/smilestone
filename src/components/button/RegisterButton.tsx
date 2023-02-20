@@ -158,14 +158,7 @@ const RegisterButton = (props: OProps) => {
                 handleNavigate("/product/register");
               }}
             >
-              📥 내 물건 팔기
-            </li>
-            <li
-              onClick={() => {
-                handleNavigate("/district-info/register");
-              }}
-            >
-              💌 내 소식 올리기
+              🏷 내 기술 등록하기
             </li>
           </ListWrapper>
         </ContentWrapper>

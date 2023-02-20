@@ -21,6 +21,12 @@ async function getProductList() {
   })
     .then((res) => res.json())
     .then((data) => data);
+  // const result = await fetch(`/api/product/list/all`, {
+  //   method: "GET",
+  // });
+  // const data = await result.json();
+  // console.log(data);
+  // return data;
 }
 
 export { postProduct, getProductList };
