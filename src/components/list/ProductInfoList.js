@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ProductInfoListCard from "./ProductInfoListCard";
 
@@ -42,23 +44,63 @@ const MoreView = styled.button`
   font-size: 16px;
 `;
 
+const ListBlock = styled.div`
+  box-sizing: border-box;
+  padding-bottom: 3rem;
+  margin: 0 auto;
+  width: 768px;
+  margin-top: 2rem;
+`;
 const ProductInfoList = (props) => {
-  const { maxWidth, data } = props;
+  // const { maxWidth, post } = props;
+
+  // return (
+  //   <AllWrapper>
+  //     <ListWrapper>
+  //       {post &&
+  //         post.map((post) => (
+  //           <ProductInfoListCard
+  //             key={post.id}
+  //             data={post}
+  //             maxWidth={maxWidth}
+  //           />
+  //         ))}
+  //       {maxWidth === 800 && <MoreView> 더보기 </MoreView>}
+  //     </ListWrapper>
+  //   </AllWrapper>
+  // );
+
+  const [posts, setPosts] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`/api/product/list/all`);
+        setPosts(response.data);
+      } catch (e) {
+        console.log(e);
+      }
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <ListBlock>대기 중</ListBlock>;
+  }
+
+  if (!posts) {
+    return null;
+  }
 
   return (
-    <AllWrapper>
-      <ListWrapper>
-        {data &&
-          data.map((data) => (
-            <ProductInfoListCard
-              key={data.id}
-              data={data}
-              maxWidth={maxWidth}
-            />
-          ))}
-        {maxWidth === 800 && <MoreView> 더보기 </MoreView>}
-      </ListWrapper>
-    </AllWrapper>
+    <ListBlock>
+      {posts.map((post) => (
+        <ProductInfoListCard key={post.productId} post={post} />
+      ))}
+    </ListBlock>
   );
 };
 
