@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { getProductList } from "../../apis/product";
@@ -36,95 +36,55 @@ const ListWrapper = styled.div`
   justify-content: center;
 `;
 
-// // 렌더링 함수
-// const ProductInfoDelay = () => {
-//   const user = useContext(UserContext);
-//   const [loading, setLoading] = useState(true);
-//   const [productInfoData, setProductInfoData] = useState([]);
-
-//   getProductList().then((data) => {
-//     setProductInfoData(data.productList);
-//     setLoading(false);
-//   });
-
-//   return loading ? (
-//     <Loading />
-//   ) : (
-//     <>
-//       <ProductInfo data={productInfoData} user={user} />
-//       <RegisterButton />
-//     </>
-//   );
-// };
-
-// //로그인 비로그인 공통 리스트
-// const ProductInfo = ({ data }) => {
-//   const productList = data;
-
-//   return (
-//     <>
-//       <ListTitle title={`기술 게시판`} />
-
-//       <WholeWrapper>
-//         <ContentsWrapper>
-//           {productList ? (
-//             <ListWrapper>
-//               <ProductInfoList maxWidth={1024} data={productList} />
-//             </ListWrapper>
-//           ) : (
-//             <NoProductInfo />
-//           )}
-//         </ContentsWrapper>
-//       </WholeWrapper>
-//     </>
-//   );
-// };
-
-// const ProductInfo = ({ data }) => {
-//   const list = data;
-
-//   return (
-//     <>
-//       <ListTitle title={`기술 게시판`} />
-
-//       <WholeWrapper>
-//         <ContentsWrapper>
-//           {list ? (
-//             <ListWrapper>
-//               {/* <ProductInfoList maxWidth={1024} data={list} /> */}
-//               <p>{list}</p>
-//             </ListWrapper>
-//           ) : (
-//             <NoProductInfo />
-//           )}
-//         </ContentsWrapper>
-//       </WholeWrapper>
-//     </>
-//   );
-// };
-// const ProductInfoDelay = () => {
-//   // const [data, setData] = useState(null);
-//   // const onClick = async () => {
-//   //   try {
-//   //     const response = await axios.get(`/api/product/list/all`);
-//   //     setData(response.data);
-//   //   } catch (e) {
-//   //     console.log(e);
-//   //   }
-//   // };
-//   return (
-//     <>
-//       {/* <div>
-//         <button onClick={onClick}>불러오기</button>
-//       </div>
-//       {data && <textarea rows={7} value={JSON.stringify(data, null, 2)} />} */}
-//       <ProductInfoList />
-//     </>
-
+// 렌더링 함수
 const ProductInfoDelay = () => {
+  const [loading, setLoading] = useState(true);
+  const [productInfoData, setProductInfoData] = useState([]);
+  const [posts, setPosts] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`/api/product/list/all`);
+        setPosts(response.data);
+      } catch (e) {
+        console.log(e);
+      }
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  return loading ? (
+    <Loading />
+  ) : (
+    <>
+      <ProductInfo data={productInfoData} />
+      <RegisterButton />
+    </>
+  );
+};
+
+//로그인 비로그인 공통 리스트
+const ProductInfo = ({ data }) => {
+  const productList = data;
+
   return (
     <>
-      <ProductInfoList />
+      <ListTitle title={`기술 게시판`} />
+
+      <WholeWrapper>
+        <ContentsWrapper>
+          {productList ? (
+            <ListWrapper>
+              <ProductInfoList maxWidth={1024} data={productList} />
+            </ListWrapper>
+          ) : (
+            <NoProductInfo />
+          )}
+        </ContentsWrapper>
+      </WholeWrapper>
     </>
   );
 };

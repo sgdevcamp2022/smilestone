@@ -61,10 +61,11 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const ImageItself = styled.img`
+const ImageItself = styled.div`
   display: block;
   border-radius: 15px;
   border: 1px solid silver;
+  background-color: #999;
   object-fit: cover;
   aspect-ratio: 1/1;
   width: 100%;
@@ -148,82 +149,76 @@ const InterestedWrapped = styled.div`
 
 const Chats = styled.p``;
 
-// const ProductInfoListCard = ({ post, maxWidth }) => {
-//   const navigate = useNavigate();
+const ProductInfoListCard = ({ post, maxWidth }) => {
+  const navigate = useNavigate();
+  const { id, title, price, view } = post;
+
+  return (
+    <CardWrapper
+      maxWidth={maxWidth}
+      onClick={() => {
+        navigate(`/product/detail`, { state: { productId: id } });
+      }}
+    >
+      <ListCardWrapper>
+        <ImageWrapper>
+          <ImageItself />
+        </ImageWrapper>
+        <LettersWrapper>
+          <ProductTitle>{title}</ProductTitle>
+          <ProductPrice>{price}</ProductPrice>
+          <ProductPrice>조회 {view}</ProductPrice>
+        </LettersWrapper>
+      </ListCardWrapper>
+    </CardWrapper>
+  );
+};
+
+// const ItemBlock = styled.div`
+//   display: flex;
+//   .thumbnail {
+//     margin-right: 1rem;
+//     img {
+//       display: block;
+//       width: 160px;
+//       height: 100px;
+//       object-fit: cover;
+//     }
+//   }
+//   .contents {
+//     h2 {
+//       margin: 0;
+//       a {
+//         color: black;
+//       }
+//     }
+//     p {
+//       margin: 0;
+//       line-height: 1.5;
+//       margin-top: 0.5rem;
+//       white-space: normal;
+//     }
+//   }
+//   & + & {
+//     margin-top: 3rem;
+//   }
+// `;
+// const ProductInfoListCard = ({ post }) => {
 //   const { productId, title, price } = post;
 
 //   return (
-//     <CardWrapper
-//       maxWidth={maxWidth}
-//       // onClick={() => {
-//       //   navigate(`/product/detail`, { state: { productId: id } });
-//       // }}
-//     >
-//       <ListCardWrapper>
-//         <ImageWrapper>
-//           <ImageItself
-//             src={`../../../assets/images/sMarketLogo.png`}
-//             alt="image"
-//           />
-//         </ImageWrapper>
-//         <LettersWrapper>
-//           <ProductTitle>{title}</ProductTitle>
-//           <ProductPrice>{priceFormat(price)}</ProductPrice>
-
-//           <InterestedWrapped>
-//             {/* <Chats> 채팅 {chatRoom.length}</Chats> */}
-//           </InterestedWrapped>
-//         </LettersWrapper>
-//       </ListCardWrapper>
-//     </CardWrapper>
+//     <ItemBlock>
+//       <div className="thumbnail">
+//         <a href="/product/detail">
+//           <img src={`../../../assets/images/sMarketLogo.png`} />
+//         </a>
+//       </div>
+//       <div className="contents">
+//         <h2>{title}</h2>
+//         <p>{price}</p>
+//       </div>
+//     </ItemBlock>
 //   );
 // };
-
-const ItemBlock = styled.div`
-  display: flex;
-  .thumbnail {
-    margin-right: 1rem;
-    img {
-      display: block;
-      width: 160px;
-      height: 100px;
-      object-fit: cover;
-    }
-  }
-  .contents {
-    h2 {
-      margin: 0;
-      a {
-        color: black;
-      }
-    }
-    p {
-      margin: 0;
-      line-height: 1.5;
-      margin-top: 0.5rem;
-      white-space: normal;
-    }
-  }
-  & + & {
-    margin-top: 3rem;
-  }
-`;
-const ProductInfoListCard = ({ post }) => {
-  const { productId, title, price } = post;
-
-  return (
-    <ItemBlock>
-      <div className="thumbnail">
-        <a href="/product/detail">
-          <img src={`../../../assets/images/sMarketLogo.png`} />
-        </a>
-      </div>
-      <div className="contents">
-        <h2>{title}</h2>
-        <p>{price}</p>
-      </div>
-    </ItemBlock>
-  );
-};
 
 export default ProductInfoListCard;

@@ -24,9 +24,6 @@ const Banner = (): JSX.Element => {
               <br />
               1:1 채팅, 음성 채팅, 화상 채팅으로 함께해요.
             </p>
-            <button onClick={() => handleNavigate("/product")}>
-              기술 게시판 보기
-            </button>
           </section>
           <section>
             <img src={Home} alt="banner image" />

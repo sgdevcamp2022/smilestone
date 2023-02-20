@@ -52,24 +52,7 @@ const ListBlock = styled.div`
   margin-top: 2rem;
 `;
 const ProductInfoList = (props) => {
-  // const { maxWidth, post } = props;
-
-  // return (
-  //   <AllWrapper>
-  //     <ListWrapper>
-  //       {post &&
-  //         post.map((post) => (
-  //           <ProductInfoListCard
-  //             key={post.id}
-  //             data={post}
-  //             maxWidth={maxWidth}
-  //           />
-  //         ))}
-  //       {maxWidth === 800 && <MoreView> 더보기 </MoreView>}
-  //     </ListWrapper>
-  //   </AllWrapper>
-  // );
-
+  const { maxWidth } = props;
   const [posts, setPosts] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -96,11 +79,19 @@ const ProductInfoList = (props) => {
   }
 
   return (
-    <ListBlock>
-      {posts.map((post) => (
-        <ProductInfoListCard key={post.productId} post={post} />
-      ))}
-    </ListBlock>
+    <AllWrapper>
+      <ListWrapper>
+        {posts &&
+          posts.map((post) => (
+            <ProductInfoListCard
+              key={post.productId}
+              post={post}
+              maxWidth={maxWidth}
+            />
+          ))}
+        {maxWidth === 800 && <MoreView> 더보기 </MoreView>}
+      </ListWrapper>
+    </AllWrapper>
   );
 };
 

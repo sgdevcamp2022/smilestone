@@ -10,7 +10,12 @@ async function loginUser(userId, password) {
       password,
     }),
   })
-    .then((res) => res.json())
+    .then(async (res) => {
+      const result = await res.json();
+      console.log(result);
+      return result;
+    })
+
     .then((data) => data);
 }
 
