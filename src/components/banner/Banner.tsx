@@ -1,7 +1,14 @@
 import { MainWrapper, TopArticle } from "./BannerStyled";
-const Home = require("../../img/iPhone_Home.png");
 
-const Banner = () => {
+import { To, useNavigate } from "react-router-dom";
+const Home = require("../../assets/images/iPhone_Home.png");
+
+const Banner = (): JSX.Element => {
+  const navigate = useNavigate();
+
+  function handleNavigate(path: To) {
+    navigate(path);
+  }
   return (
     <>
       <MainWrapper>
