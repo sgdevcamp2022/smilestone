@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import axios from "axios";
 import styled from "styled-components";
 import { getProductList } from "../../apis/product";
 import { UserContext } from "../../context/context";
@@ -79,43 +80,51 @@ const ListWrapper = styled.div`
 //   );
 // };
 
-const ProductInfo = ({ data }) => {
-  const list = data;
+// const ProductInfo = ({ data }) => {
+//   const list = data;
 
+//   return (
+//     <>
+//       <ListTitle title={`기술 게시판`} />
+
+//       <WholeWrapper>
+//         <ContentsWrapper>
+//           {list ? (
+//             <ListWrapper>
+//               {/* <ProductInfoList maxWidth={1024} data={list} /> */}
+//               <p>{list}</p>
+//             </ListWrapper>
+//           ) : (
+//             <NoProductInfo />
+//           )}
+//         </ContentsWrapper>
+//       </WholeWrapper>
+//     </>
+//   );
+// };
+// const ProductInfoDelay = () => {
+//   // const [data, setData] = useState(null);
+//   // const onClick = async () => {
+//   //   try {
+//   //     const response = await axios.get(`/api/product/list/all`);
+//   //     setData(response.data);
+//   //   } catch (e) {
+//   //     console.log(e);
+//   //   }
+//   // };
+//   return (
+//     <>
+//       {/* <div>
+//         <button onClick={onClick}>불러오기</button>
+//       </div>
+//       {data && <textarea rows={7} value={JSON.stringify(data, null, 2)} />} */}
+//       <ProductInfoList />
+//     </>
+
+const ProductInfoDelay = () => {
   return (
     <>
-      <ListTitle title={`기술 게시판`} />
-
-      <WholeWrapper>
-        <ContentsWrapper>
-          {list ? (
-            <ListWrapper>
-              {/* <ProductInfoList maxWidth={1024} data={list} /> */}
-              <p>{list}</p>
-            </ListWrapper>
-          ) : (
-            <NoProductInfo />
-          )}
-        </ContentsWrapper>
-      </WholeWrapper>
-    </>
-  );
-};
-const ProductInfoDelay = ({ data }) => {
-  const [productInfoData, setProductInfoData] = useState([]);
-
-  const [loading, setLoading] = useState(true);
-
-  getProductList().then((data) => {
-    setProductInfoData(data?.list);
-    setLoading(false);
-    console.log(data);
-  });
-
-  return (
-    <>
-      {/* <ProductInfo data={productInfoData} /> */}
-      <p>dkdk {data?.list}</p>
+      <ProductInfoList />
     </>
   );
 };
