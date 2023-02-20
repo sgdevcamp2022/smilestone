@@ -1,9 +1,20 @@
+export default function setHeaders(headers) {
+  if (localStorage.getItem("login-token")) {
+    return {
+      ...headers,
+      Authorization: `Bearer ${localStorage.getItem("login-token")}`,
+    };
+  } else {
+    return headers;
+  }
+}
+
 async function postProduct(sendableResult) {
+  console.log(setHeaders());
   return await fetch(`/api/product/post`, {
-    headers: {
+    headers: setHeaders({
       "Content-Type": "application/json",
-      token: localStorage.getItem("token"),
-    },
+    }),
     method: "POST",
     body: JSON.stringify({
       ...sendableResult,
@@ -21,12 +32,16 @@ async function getProductList() {
   })
     .then((res) => res.json())
     .then((data) => data);
-  // const result = await fetch(`/api/product/list/all`, {
-  //   method: "GET",
-  // });
-  // const data = await result.json();
-  // console.log(data);
-  // return data;
 }
 
-export { postProduct, getProductList };
+async function productId() {
+  return await fetch(`/api/product/id`, {
+    headers: setHeaders({
+      "Content-Type": "application/json",
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => data);
+}
+
+export { postProduct, getProductList, productId };

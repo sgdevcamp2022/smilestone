@@ -32,16 +32,18 @@ const Login = (props: IProps) => {
       setVisible(false);
       setUseFadeOut(false);
       setOpenSignup(true);
-    }, 500);
+    }, 400);
   };
 
   const handleLogin = () => {
     loginUser(id, password).then((response) => {
       const { user } = response;
+      console.log(response);
 
-      if (response.ACCESS_TOKEN) {
-        localStorage.setItem("login-token", response.ACCESS_TOKEN);
+      if (response.tokens.access_token) {
+        localStorage.setItem("login-token", response.tokens.access_token);
       }
+
       dispatch({
         type: "LOGIN",
         payload: {
