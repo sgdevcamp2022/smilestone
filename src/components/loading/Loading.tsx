@@ -1,17 +1,7 @@
 import styled, { keyframes } from "styled-components";
-import { FaCarrot } from "react-icons/fa";
+const Logo = require("../../assets/images/sMarketLogo.png");
 
-const Loading = () => {
-  return (
-    <LoadingWrapper>
-      <FaCarrot />
-    </LoadingWrapper>
-  );
-};
-
-export default Loading;
-
-const turnCarrot = keyframes`
+const turn = keyframes`
 0%{
     transform: rotate(270deg);
 }
@@ -26,7 +16,17 @@ const LoadingWrapper = styled.div`
   align-items: center;
   height: 100vh;
   font-size: 50px;
-  animation: ${turnCarrot} 1s linear infinite;
+  animation: ${turn} 1s linear infinite;
   transform-origin: 50% 50%;
   opacity: 0.5;
 `;
+
+const Loading = () => {
+  return (
+    <LoadingWrapper>
+      <img src={Logo} alt="logo" />
+    </LoadingWrapper>
+  );
+};
+
+export default Loading;

@@ -55,7 +55,8 @@ const Login = (props: IProps) => {
         setVisible(false);
         setUseFadeOut(false);
       }, 500);
-      window.alert("로그인 성공");
+
+      window.alert("성공적으로 로그인 되었습니다 !");
       navigate("/");
     });
   };

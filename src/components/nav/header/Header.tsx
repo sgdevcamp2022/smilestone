@@ -150,7 +150,7 @@ const Header = (props: IProps) => {
           <NavMenu isButtonClicked={isButtonClicked}>
             {user?.id !== "" ? (
               <>
-                <li onClick={() => handleLogout()}>로그아웃</li>
+                <li onClick={() => handleLogout()}> 로그아웃</li>
                 <li onClick={() => handleNavigate("/mypage")}>마이페이지</li>
               </>
             ) : (
@@ -161,13 +161,15 @@ const Header = (props: IProps) => {
             )}
 
             <ChatButtonWrapper>
-              <ChatButton
-                onClick={() => {
-                  handleNavigate("/chat");
-                }}
-              >
-                채팅하기
-              </ChatButton>
+              {user.id !== "" && (
+                <ChatButton
+                  onClick={() => {
+                    handleNavigate("/chat");
+                  }}
+                >
+                  채팅하기
+                </ChatButton>
+              )}
             </ChatButtonWrapper>
           </NavMenu>
         </HeaderWrapper>

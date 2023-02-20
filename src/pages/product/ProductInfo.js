@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { getProductList } from "../../apis/product";
 import { UserContext } from "../../context/context";
@@ -35,52 +35,52 @@ const ListWrapper = styled.div`
   justify-content: center;
 `;
 
-//조건부 렌더링 함수
-const ProductInfoDelay = () => {
-  const user = useContext(UserContext);
-  const [loading, setLoading] = useState(true);
-  const [isLogin, setIsLogin] = useState(Boolean);
-  const [productInfoData, setProductInfoData] = useState([]);
+// // 렌더링 함수
+// const ProductInfoDelay = () => {
+//   const user = useContext(UserContext);
+//   const [loading, setLoading] = useState(true);
+//   const [productInfoData, setProductInfoData] = useState([]);
 
-  // useEffect(() => {
-  //   setIsLogin(Boolean);
-  // }, [user]);
+//   getProductList().then((data) => {
+//     setProductInfoData(data.productList);
+//     setLoading(false);
+//   });
 
-  getProductList().then((data) => {
-    setProductInfoData(data.productList);
-    setLoading(false);
-  });
+//   return loading ? (
+//     <Loading />
+//   ) : (
+//     <>
+//       <ProductInfo data={productInfoData} user={user} />
+//       <RegisterButton />
+//     </>
+//   );
+// };
 
-  return (
-    <>
-      <ProductInfo />
-      {/* <RegisterButton /> */}
-    </>
-  );
-};
-
-//로그인시 리스트
-// const ProductInfoWhenLogin = ({ data, user }) => {
+// //로그인 비로그인 공통 리스트
+// const ProductInfo = ({ data }) => {
 //   const productList = data;
+
 //   return (
 //     <>
 //       <ListTitle title={`기술 게시판`} />
+
 //       <WholeWrapper>
-//         {productList ? (
-//           <ListWrapper>
-//             <ProductInfoList maxWidth={1024} data={productList} />
-//           </ListWrapper>
-//         ) : (
-//           <NoProductInfo />
-//         )}
+//         <ContentsWrapper>
+//           {productList ? (
+//             <ListWrapper>
+//               <ProductInfoList maxWidth={1024} data={productList} />
+//             </ListWrapper>
+//           ) : (
+//             <NoProductInfo />
+//           )}
+//         </ContentsWrapper>
 //       </WholeWrapper>
 //     </>
 //   );
 // };
 
-//비로그인시 기본 리스트
 const ProductInfo = ({ data }) => {
-  const productList = data;
+  const list = data;
 
   return (
     <>
@@ -88,15 +88,34 @@ const ProductInfo = ({ data }) => {
 
       <WholeWrapper>
         <ContentsWrapper>
-          {productList ? (
+          {list ? (
             <ListWrapper>
-              <ProductInfoList maxWidth={1024} data={productList} />
+              {/* <ProductInfoList maxWidth={1024} data={list} /> */}
+              <p>{list}</p>
             </ListWrapper>
           ) : (
             <NoProductInfo />
           )}
         </ContentsWrapper>
       </WholeWrapper>
+    </>
+  );
+};
+const ProductInfoDelay = ({ data }) => {
+  const [productInfoData, setProductInfoData] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+
+  getProductList().then((data) => {
+    setProductInfoData(data?.list);
+    setLoading(false);
+    console.log(data);
+  });
+
+  return (
+    <>
+      {/* <ProductInfo data={productInfoData} /> */}
+      <p>dkdk {data?.list}</p>
     </>
   );
 };
