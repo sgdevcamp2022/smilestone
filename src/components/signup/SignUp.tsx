@@ -67,7 +67,6 @@ const Signup = (props: IProps) => {
   const navigate = useNavigate();
   const { visible, setVisible } = props;
   const [userId, setUserId] = useState("");
-  const [useIdCheck, setUseIdCheck] = useState(false);
   const [password, setPassword] = useState("");
   const [usePwCheck, setUsePwCheck] = useState("");
   const [nickName, setNickName] = useState("");
