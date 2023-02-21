@@ -1,5 +1,29 @@
 import styled from "styled-components";
 
+const ImageWrapper = styled.div`
+  display: flex;
+  border-radius: 15px;
+  border: 1px solid silver;
+  flex: none;
+  aspect-ratio: 3/2;
+  margin: auto;
+  object-fit: cover;
+
+  background-color: #999;
+  @media (max-width: 690px) {
+    width: 200px;
+  }
+  // 아이패드 (모바일 버전)
+  @media (min-width: 691px) and (max-width: 890px) {
+    width: 210px;
+  }
+  // 모니터
+  @media (min-width: 891px) {
+    width: 220px;
+    height: auto;
+  }
+`;
+
 const MainWrapper = styled.main`
   display: flex;
   flex-direction: column;
@@ -12,21 +36,22 @@ const UserInfo = styled.div`
   align-items: center;
 
   .ChatBtn {
-    border: 1px solid ${(props) => props.theme.signColor};
+    border: 1px solid #ff8a3d;
     border-radius: 50px;
     padding: 15px 20px;
     cursor: pointer;
     :hover {
-      background-color: ${(props) => props.theme.signColor};
+      background-color: #ff8a3d;
       span {
         color: #ffff;
       }
     }
     span {
-      color: ${(props) => props.theme.signColor};
+      color: #ff8a3d;
     }
   }
 `;
+
 const InfoWrapper = styled.section`
   @media (max-width: 890px) {
     padding: 0px 15px;
@@ -146,4 +171,5 @@ export {
   InfoBottom,
   InfoLike,
   FixAndDelete,
+  ImageWrapper,
 };

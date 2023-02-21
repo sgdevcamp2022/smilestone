@@ -148,29 +148,35 @@ const Editor = (props) => {
 
   // 카테고리 받아와서 넘기기 위한 State
 
-  const [category, setCategory] = useState(
-    [
-      {
-        id: 0,
-        categoryName: "컴퓨터",
-      },
-      {
-        id: 1,
-        categoryName: "영어",
-      },
-      {
-        id: 2,
-        categoryName: "수학",
-      },
-      {
-        id: 3,
-        categoryName: "과학",
-      },
-    ]
-  );
+  const [category, setCategory] = useState([
+    {
+      id: 0,
+      categoryName: "카테고리 선택",
+    },
+    {
+      id: 1,
+      categoryName: "영어",
+    },
+    {
+      id: 2,
+      categoryName: "수학",
+    },
+    {
+      id: 3,
+      categoryName: "과학",
+    },
+    {
+      id: 4,
+      categoryName: "컴퓨터",
+    },
+    {
+      id: 5,
+      categoryName: "디자인",
+    },
+  ]);
 
   // useEffect(() => {
-  //   fetch("/api/product/category?category=컴퓨터", 
+  //   fetch("/api/product/category?category=컴퓨터",
   //     method: "GET",
   //     headers: {
   //       "Content-Type": "application/json",
@@ -212,7 +218,7 @@ const Editor = (props) => {
   const handleSubmit = () => {
     setAllContents({
       ...allContents,
-      // userId: user.id,
+      userId: user.id,
     });
     const descriptionText = quillElement.current.innerText;
     return { ...allContents, content: descriptionText };
@@ -292,7 +298,7 @@ const Editor = (props) => {
                 카테고리 선택
               </PlaceHolder>
 
-              {category.map(data => (
+              {category.map((data) => (
                 <DropDown key={data.id} value={data.id}>
                   {data.categoryName}
                 </DropDown>

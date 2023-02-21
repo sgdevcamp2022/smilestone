@@ -1,5 +1,5 @@
 import Banner from "../../components/banner/Banner";
-import ProductInfoDelay from "../../pages/product/ProductInfo";
+import ProductInfoDelay from "../product/ProductInfo";
 
 const Main = () => {
   return (
