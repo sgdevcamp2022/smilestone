@@ -147,41 +147,47 @@ const Editor = (props) => {
   }); //게시글 정보 묶어서 저장
 
   // 카테고리 받아와서 넘기기 위한 State
-  const [category, setCategory] = useState({
-    categories: [
-      {
-        id: 0,
-        categoryName: "컴퓨터",
-      },
-      {
-        id: 1,
-        categoryName: "영어",
-      },
-      {
-        id: 2,
-        categoryName: "수학",
-      },
-      {
-        id: 3,
-        categoryName: "과학",
-      },
-    ],
-  });
+  const [category, setCategory] = useState([
+    {
+      id: 0,
+      categoryName: "카테고리 선택",
+    },
+    {
+      id: 1,
+      categoryName: "언어",
+    },
+    {
+      id: 2,
+      categoryName: "수학",
+    },
+    {
+      id: 3,
+      categoryName: "과학",
+    },
+    {
+      id: 4,
+      categoryName: "디자인",
+    },
+    {
+      id: 5,
+      categoryName: "컴퓨터",
+    },
+  ]);
 
-  useEffect(() => {
-    fetch("/api/product/category?category=`컴퓨터`", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("login-token")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setCategory(data);
-        console.log(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("/api/product/category", {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${localStorage.getItem("login-token")}`,
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setCategory(data);
+  //       console.log(data);
+  //     });
+  // }, []);
 
   //가격정보 저장과 원 이모티콘 색 변환을 위한 불리언 값 저장
   const onPriceChange = (e) => {
@@ -222,7 +228,7 @@ const Editor = (props) => {
   };
 
   const goToDetail = () => {
-    navigate(`/product/detail`, {
+    navigate(`/product`, {
       state: { productId: productId },
       replace: true,
     });
@@ -290,8 +296,8 @@ const Editor = (props) => {
               <PlaceHolder value="0" ref={categorySelection}>
                 카테고리 선택
               </PlaceHolder>
-              {category.categories.map((data) => (
-                <DropDown key={data.productId} value={data.productId}>
+              {category.map((data) => (
+                <DropDown key={data.id} value={data.id}>
                   {data.categoryName}
                 </DropDown>
               ))}
