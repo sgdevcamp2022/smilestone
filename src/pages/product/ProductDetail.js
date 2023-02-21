@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-// import { handleCreateRoom } from "apis/socket";
 import { getProductDetail, getProductList } from "../../apis/product";
 import { UserContext } from "../../context/context";
 import DetailDeleteModal from "../../components/button/DetailDeleteModal";
@@ -48,9 +47,9 @@ const ProductDetail = (props) => {
   //   const isMe = myInfo.id === product.user.id;
   const [openModal, setOpenModal] = useState(false);
 
-  //   const handleCallback = (roomId) => {
-  //     navigate(`/chat`, { state: { roomId } });
-  //   };
+  const handleCallback = (roomId) => {
+    navigate(`/chat`, { state: { roomId } });
+  };
 
   //   const goEditProduct = () => {
   //     navigate("/product/edit", { state: { product } });
@@ -70,7 +69,7 @@ const ProductDetail = (props) => {
               if (myInfo?.id === "") {
                 alert("로그인 후 이용 가능합니다.");
               }
-              // handleCreateRoom(myInfo.id, product.id, handleCallback);
+              handleCallback();
             }}
           >
             <span>판매자와 채팅하기</span>
