@@ -8,14 +8,14 @@ export default function TestChat() {
   const [roomId, setRoomId] = useState("0")
   const [message, setMessage] = useState("")
   const [messageHistory, setMessageHistory] = useState<any>([])
-  const [stompClient, setStompClient] = useState<Stomp.Client>(Stomp.over(new SockJS("http://localhost:8090/smilestone/chat")))
+  const [stompClient, setStompClient] = useState<Stomp.Client>(Stomp.over(new SockJS("http://3.34.86.115:8090/smilestone/chat")))
 
   useEffect( () => {
-    stompClient.connect({}, (frame) => {}, (e) => {});
+    stompClient.connect({}, (frame : any) => {}, (e: any) => {});
   }, [])
 
   const onClickTestChatRoom = (sellerName: string) => () => {
-    stompClient.subscribe(`/chat/${roomId}`, (msg) => {
+    stompClient.subscribe(`/chat/${roomId}`, (msg: any) => {
       const jsonFrame = JSON.parse(msg.body)
       setMessageHistory((prev: any) => [...prev, {sender: jsonFrame.sender, message: jsonFrame.message, chatAt: jsonFrame.chatAt}])
     });
