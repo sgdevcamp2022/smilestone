@@ -30,11 +30,6 @@ const member: Array<IMemberProps> = [
     githubId: "JeongJin984",
   },
   {
-    name: "김경욱",
-    stack: "iOS",
-    githubId: "KimKU1018",
-  },
-  {
     name: "김근범",
     stack: "Android",
     githubId: "agfalcon",
