@@ -11,7 +11,7 @@ stompClient.connect(
   (e) => {}
 );
 
-export default function Chat() {
+const Chat = () => {
   const [state, setState] = useState("close");
   const [username, setUsername] = useState("tester");
   const [roomId, setRoomId] = useState("0");
@@ -104,4 +104,6 @@ export default function Chat() {
       </div>
     </>
   );
-}
+};
+
+export default Chat;
