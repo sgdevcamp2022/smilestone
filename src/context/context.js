@@ -28,7 +28,7 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     if (token && user.id === "") {
       getUserByToken(token).then((data) =>
-        userDispatch({ type: "LOGIN", payload: data.user })
+        userDispatch({ type: "LOGIN", payload: data.id })
       );
     }
   }, [token, user.id]);

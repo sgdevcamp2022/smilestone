@@ -61,14 +61,14 @@ function Chat() {
       })
     );
   };
-  const myInfo = useContext(UserContext);
+  const user = useContext(UserContext);
+
   return (
     <>
+      <button onClick={onClickTestChatRoom("tester2")}>.</button>
       <MainWrapper>
-        <div>{state}</div>
-        <button onClick={onClickTestChatRoom("tester2")}>
-          클릭해서 상대방과 대화 시작하기
-        </button>
+        {/* <div>{state}</div> */}
+
         <ul className="textWrapper">
           {/* {messageHistory.map((v, i) => (
           <div key={i}>{v.sender + " : " + v.message + " / " + v.chatAt}</div>
@@ -93,6 +93,7 @@ function Chat() {
             if (i === 0 || prevDate !== curDate) {
               isNewDate = true;
             }
+
             return (
               <div key={i}>
                 {isNewDate && (
@@ -100,14 +101,15 @@ function Chat() {
                     <span>{curDate}</span>
                   </div>
                 )}
+
                 <li
                   key={i}
                   className={
                     v.sender !== undefined
-                      ? v.sender.id === myInfo.id
+                      ? v.sender === user?.id
                         ? "isMy"
                         : "isOther"
-                      : v.sender
+                      : v.isMy
                       ? "isMy"
                       : "isOther"
                   }
@@ -187,11 +189,11 @@ function NotFoundChats() {
 
 const FooterMainWrapper = styled.div`
   display: flex;
-  align-items: center;
   border: 1px solid #ff8a3d;
   border-radius: 0.3em;
-  margin-left: 15px;
-  width: 50%;
+  margin-left: 100px;
+  margin-right: 100px;
+  /* width: 90%; */
   background-color: white;
 
   .chatInput {

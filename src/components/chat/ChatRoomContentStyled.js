@@ -76,8 +76,6 @@ const NoTalkWrapper = styled.div`
   height: 100%;
   font-size: 30px;
   color: silver;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
 
 const ProductWrapper = styled.div`
@@ -88,8 +86,6 @@ const ProductWrapper = styled.div`
   border-bottom: 1px solid silver;
   padding: 0 18px;
   height: 64px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
   .stateWrapper {
     border: 1px solid gray;

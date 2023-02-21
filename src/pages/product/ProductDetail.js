@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+
 import { getProductDetail, getProductList } from "../../apis/product";
 import { UserContext } from "../../context/context";
 import DetailDeleteModal from "../../components/button/DetailDeleteModal";
@@ -7,6 +8,8 @@ import UserProfile from "../../components/profile/UserProfile";
 import GridList from "../../components/list/GridList";
 import Loading from "../../components/loading/Loading";
 import { BsFillHandbagFill } from "react-icons/bs";
+import SockJS from "sockjs-client";
+import Stomp from "stompjs";
 
 import {
   MainWrapper,
@@ -45,10 +48,31 @@ const ProductDetail = (props) => {
   const myInfo = useContext(UserContext);
   const { product, products } = props;
   //   const isMe = myInfo.id === product.user.id;
+
+  const [roomId, setRoomId] = useState("0");
+  const [stompClient, setStompClient] = useState(
+    Stomp.over(new SockJS("http://3.34.86.115:8090/smilestone/chat"))
+  );
+
+  const [messageHistory, setMessageHistory] = useState([]);
   const [openModal, setOpenModal] = useState(false);
 
+  const onClickTestChatRoom = (sellerName) => () => {
+    stompClient.subscribe(`/chat/${roomId}`, (msg) => {
+      const jsonFrame = JSON.parse(msg.body);
+      setMessageHistory((prev) => [
+        ...prev,
+        {
+          sender: jsonFrame.sender,
+          message: jsonFrame.message,
+          chatAt: jsonFrame.chatAt,
+        },
+      ]);
+    });
+  };
   const handleCallback = (roomId) => {
     navigate(`/chat`, { state: { roomId } });
+    onClickTestChatRoom("tester2");
   };
 
   const goEditProduct = () => {
