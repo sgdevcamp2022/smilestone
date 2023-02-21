@@ -217,7 +217,7 @@ const Editor = (props) => {
   const handleSubmit = () => {
     setAllContents({
       ...allContents,
-      // userId: user.id,
+      userId: user.id,
     });
     const descriptionText = quillElement.current.innerText;
     return { ...allContents, content: descriptionText };
