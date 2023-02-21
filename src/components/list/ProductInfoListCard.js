@@ -1,5 +1,6 @@
-import React from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/context";
 import styled from "styled-components";
 
 const CardWrapper = styled.div`
@@ -144,14 +145,23 @@ const Chats = styled.p``;
 
 const ProductInfoListCard = ({ post, maxWidth }) => {
   const navigate = useNavigate();
+  const myInfo = useContext(UserContext);
   const { productId, title, price, view } = post;
 
   return (
     <CardWrapper
       maxWidth={maxWidth}
       onClick={() => {
-        navigate(`/product/detail/${productId}`);
+        if (myInfo?.id === "") {
+          alert("로그인 후 이용 가능합니다.");
+          navigate(`/`);
+        } else if (myInfo?.id !== "") {
+          navigate(`/product/detail/${productId}`);
+        }
       }}
+      // onClick={() => {
+      //   navigate(`/product/detail/${productId}`);
+      // }}
     >
       <ListCardWrapper>
         <ImageWrapper>

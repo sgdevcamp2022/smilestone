@@ -51,9 +51,9 @@ const ProductDetail = (props) => {
     navigate(`/chat`, { state: { roomId } });
   };
 
-  //   const goEditProduct = () => {
-  //     navigate("/product/edit", { state: { product } });
-  //   };
+  const goEditProduct = () => {
+    navigate("/product/edit", { state: { product } });
+  };
 
   return (
     <MainWrapper>
@@ -68,8 +68,10 @@ const ProductDetail = (props) => {
             onClick={() => {
               if (myInfo?.id === "") {
                 alert("로그인 후 이용 가능합니다.");
+                navigate(`/`);
+              } else if (myInfo?.id !== "") {
+                handleCallback();
               }
-              handleCallback();
             }}
           >
             <span>판매자와 채팅하기</span>
