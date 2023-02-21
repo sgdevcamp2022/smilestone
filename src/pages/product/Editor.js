@@ -147,35 +147,30 @@ const Editor = (props) => {
   }); //게시글 정보 묶어서 저장
 
   // 카테고리 받아와서 넘기기 위한 State
-  const [category, setCategory] = useState([
-    {
-      id: 0,
-      categoryName: "카테고리 선택",
-    },
-    {
-      id: 1,
-      categoryName: "언어",
-    },
-    {
-      id: 2,
-      categoryName: "수학",
-    },
-    {
-      id: 3,
-      categoryName: "과학",
-    },
-    {
-      id: 4,
-      categoryName: "디자인",
-    },
-    {
-      id: 5,
-      categoryName: "컴퓨터",
-    },
-  ]);
+
+  const [category, setCategory] = useState(
+    [
+      {
+        id: 0,
+        categoryName: "컴퓨터",
+      },
+      {
+        id: 1,
+        categoryName: "영어",
+      },
+      {
+        id: 2,
+        categoryName: "수학",
+      },
+      {
+        id: 3,
+        categoryName: "과학",
+      },
+    ]
+  );
 
   // useEffect(() => {
-  //   fetch("/api/product/category", {
+  //   fetch("/api/product/category?category=컴퓨터", 
   //     method: "GET",
   //     headers: {
   //       "Content-Type": "application/json",
@@ -296,7 +291,8 @@ const Editor = (props) => {
               <PlaceHolder value="0" ref={categorySelection}>
                 카테고리 선택
               </PlaceHolder>
-              {category.map((data) => (
+
+              {category.map(data => (
                 <DropDown key={data.id} value={data.id}>
                   {data.categoryName}
                 </DropDown>
