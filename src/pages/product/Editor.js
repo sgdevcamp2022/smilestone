@@ -147,6 +147,7 @@ const Editor = (props) => {
   }); //게시글 정보 묶어서 저장
 
   // 카테고리 받아와서 넘기기 위한 State
+
   const [category, setCategory] = useState(
     [
       {
@@ -169,7 +170,7 @@ const Editor = (props) => {
   );
 
   // useEffect(() => {
-  //   fetch("/api/product/category?category=컴퓨터", {
+  //   fetch("/api/product/category?category=컴퓨터", 
   //     method: "GET",
   //     headers: {
   //       "Content-Type": "application/json",
@@ -222,7 +223,7 @@ const Editor = (props) => {
   };
 
   const goToDetail = () => {
-    navigate(`/product/detail`, {
+    navigate(`/product`, {
       state: { productId: productId },
       replace: true,
     });
@@ -290,6 +291,7 @@ const Editor = (props) => {
               <PlaceHolder value="0" ref={categorySelection}>
                 카테고리 선택
               </PlaceHolder>
+
               {category.map(data => (
                 <DropDown key={data.id} value={data.id}>
                   {data.categoryName}
