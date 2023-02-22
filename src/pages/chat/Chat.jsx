@@ -11,12 +11,13 @@ import {
   NoTalkWrapper,
 } from "../../components/chat/ChatRoomContentStyled";
 import { UserContext } from "../../context/context";
+import { useParams } from "react-router-dom";
 
 // 채팅 내용
 function Chat() {
-  const [state, setState] = useState("close");
-  const [username, setUsername] = useState("tester1");
-  const [roomId, setRoomId] = useState("0");
+  const params = useParams();
+  const productId = params.id;
+
   const [message, setMessage] = useState("");
   const [messageHistory, setMessageHistory] = useState([]);
   const [stompClient, setStompClient] = useState(
@@ -32,8 +33,9 @@ function Chat() {
   }, []);
 
   const onClickTestChatRoom = (sellerName) => () => {
-    stompClient.subscribe(`/chat/${roomId}`, (msg) => {
+    stompClient.subscribe(`/chat/${productId}`, (msg) => {
       const jsonFrame = JSON.parse(msg.body);
+      console.log(jsonFrame);
       setMessageHistory((prev) => [
         ...prev,
         {
@@ -51,17 +53,18 @@ function Chat() {
 
   const onClickSendMessage = () => {
     stompClient.send(
-      `/pub/chat.${roomId}`,
+      `/pub/chat.${productId}`,
       {},
       JSON.stringify({
-        roomId: roomId,
-        sender: username,
+        roomId: productId,
+        sender: user.id,
         message: message,
         chatAt: new Date().toISOString(),
       })
     );
   };
   const user = useContext(UserContext);
+  console.log(user);
 
   return (
     <>
@@ -104,15 +107,7 @@ function Chat() {
 
                 <li
                   key={i}
-                  className={
-                    v.sender !== undefined
-                      ? v.sender === user?.id
-                        ? "isMy"
-                        : "isOther"
-                      : v.isMy
-                      ? "isMy"
-                      : "isOther"
-                  }
+                  className={v.sender === "" + user.id ? "isMy" : "isOther"}
                 >
                   <div className="timeWrapper">
                     <span>{textTime}</span>
