@@ -32,11 +32,15 @@
   - 아이디 중복확인
   - 아이디, 비밀번호 정해진 양식에 맞는지 확인
   - 비밀번호 일치 확인
+
+
   ![KakaoTalk_20230222_140110410_01](https://user-images.githubusercontent.com/59364681/220527024-7a1020d3-cc2d-40e6-bb80-77165e90bc54.jpg)
 
 - 로그인
   - 일반 로그인
   - JWT 로그인
+
+
   ![KakaoTalk_20230222_140110410](https://user-images.githubusercontent.com/59364681/220527004-755a963e-08c7-44bf-b467-bf07e2f7c197.jpg)
 
 
@@ -56,6 +60,8 @@
   ![KakaoTalk_20230222_140110410_08](https://user-images.githubusercontent.com/59364681/220527217-6e7d6814-3938-40dc-af1c-2f39c81a9b4e.jpg)
 
 - 게시글 작성
+
+
  ![KakaoTalk_20230222_140110410_04](https://user-images.githubusercontent.com/59364681/220527242-7a0193e2-7460-4da4-8913-25557e221ff7.jpg)
 
 
