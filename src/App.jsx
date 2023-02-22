@@ -26,7 +26,7 @@ function App() {
             <Route path="/webcam-client" element={<WebCamClient />} />
             <Route path="/webcam-streamer" element={<WebCamStreamer />} />
             <Route path="/mypage" element={<Mypage />} />
-            <Route path="/chat" element={<Chat />} />
+            <Route path="/chat/:id" element={<Chat />} />
           </Routes>
           <Footer />
         </div>

@@ -71,7 +71,7 @@ const ProductDetail = (props) => {
     });
   };
   const handleCallback = (roomId) => {
-    navigate(`/chat`, { state: { roomId } });
+    navigate(`/chat/${roomId}`, { state: { roomId } });
     onClickTestChatRoom("tester2");
   };
 
@@ -94,7 +94,7 @@ const ProductDetail = (props) => {
                 alert("로그인 후 이용 가능합니다.");
                 navigate(`/`);
               } else if (myInfo?.id !== "") {
-                handleCallback();
+                handleCallback(product.productId);
               }
             }}
           >

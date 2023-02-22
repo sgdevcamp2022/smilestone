@@ -37,7 +37,7 @@ const Login = (props: IProps) => {
 
   const handleLogin = () => {
     loginUser(id, password).then((response) => {
-      const { user } = response;
+      const user = response;
       console.log(response);
 
       if (response.tokens.access_token) {
@@ -47,8 +47,8 @@ const Login = (props: IProps) => {
       dispatch({
         type: "LOGIN",
         payload: {
-          id: user?.id,
-          nickname: user?.nickname,
+          id: user.id,
+          nickname: user.userId,
         },
       });
 
