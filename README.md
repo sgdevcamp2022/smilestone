@@ -77,6 +77,9 @@
   - 게시글을 통해서 들어갈 수 있음
   - 다대다 실시간 그룹채팅 가능
 
+  ![KakaoTalk_20230222_142231096](https://user-images.githubusercontent.com/59364681/220530314-dba8ba64-0764-46f5-b069-ce71bc4417fd.jpg)
+
+
 
 - 내 정보
   - 구매내역, 판매내역 열람
