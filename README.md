@@ -43,6 +43,7 @@
 - 홈화면
   - 게시글 리스트 제공
   - 검색 기능
+  
   ![KakaoTalk_20230222_140110410_02](https://user-images.githubusercontent.com/59364681/220527073-cf76ef38-a9b8-4475-be31-01fee323adac.jpg)
   ![KakaoTalk_20230222_140110410_05](https://user-images.githubusercontent.com/59364681/220527106-efbd0f7d-dde2-4926-a140-5ba7c61d2dbf.jpg)
   ![KakaoTalk_20230222_140110410_06](https://user-images.githubusercontent.com/59364681/220527130-a5391e54-bcce-4a09-813c-f4b8777961d7.jpg)
@@ -50,6 +51,7 @@
 
 - 카테고리 검색
   - 카테고리 별로 게시글을 볼 수 있음
+  
   ![KakaoTalk_20230222_140110410_07](https://user-images.githubusercontent.com/59364681/220527155-f900e9a6-7d71-4926-9592-fb2897420ac5.jpg)
   ![KakaoTalk_20230222_140110410_08](https://user-images.githubusercontent.com/59364681/220527217-6e7d6814-3938-40dc-af1c-2f39c81a9b4e.jpg)
 
@@ -61,6 +63,7 @@
   - 게시글 내용 자세히 보기
   - 작성자라면 수정 및 삭제 가능
   - 실시간 토론방으로 입장 가능
+  
   ![KakaoTalk_20230222_140110410_03](https://user-images.githubusercontent.com/59364681/220527325-130828a7-05ab-40a0-8047-fcab4a72b331.jpg)
 
 
@@ -73,6 +76,7 @@
   - 구매내역, 판매내역 열람
   - 비밀번호, 닉네임 변경 가능
   - 로그아웃
+ 
 ![KakaoTalk_20230222_140110410_10](https://user-images.githubusercontent.com/59364681/220527409-c75f16fa-dbd3-4ac3-824a-f97b9f09d370.jpg)
 ![KakaoTalk_20230222_140110410_11](https://user-images.githubusercontent.com/59364681/220527417-6f53a181-f279-4678-b0a9-c2d21d6fbe01.jpg)
 ![KakaoTalk_20230222_140110410_12](https://user-images.githubusercontent.com/59364681/220527423-bab26ea2-133b-45d0-85fc-fef84608a37a.jpg)
