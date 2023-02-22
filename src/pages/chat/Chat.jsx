@@ -11,6 +11,7 @@ import {
   NoTalkWrapper,
 } from "../../components/chat/ChatRoomContentStyled";
 import { UserContext } from "../../context/context";
+
 import { useParams } from "react-router-dom";
 
 // 채팅 내용
@@ -64,6 +65,7 @@ function Chat() {
     );
   };
   const user = useContext(UserContext);
+
   console.log(user);
 
   return (
