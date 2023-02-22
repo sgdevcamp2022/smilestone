@@ -110,27 +110,6 @@ const InfoBottom = styled.div`
   }
 `;
 
-const InfoLike = styled.div`
-  position: relative;
-  display: flex;
-  padding: 20px 0px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #99999940;
-  span {
-    font-weight: 500;
-  }
-  svg {
-    cursor: pointer;
-    margin-left: 6px;
-    transition: transform 300ms ease;
-    color: ${(props) =>
-      props.isIntrested ? props.theme.signColor : "#66666647"};
-    :hover {
-      transform: scale(1.2);
-    }
-  }
-`;
-
 const FixAndDelete = styled.div`
   display: inline-flex;
   height: 7px;
@@ -169,7 +148,6 @@ export {
   Line,
   InfoTop,
   InfoBottom,
-  InfoLike,
   FixAndDelete,
   ImageWrapper,
 };

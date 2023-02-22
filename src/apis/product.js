@@ -29,9 +29,9 @@ async function postProduct(sendableResult) {
 // list 가져오기
 async function getProductList() {
   return await fetch(`/api/product/list/all`, {
-    headers: {
-      token: localStorage.getItem("token"),
-    },
+    headers: setHeaders({
+      "Content-Type": "application/json",
+    }),
   })
     .then((res) => res.json())
     .then((data) => data);
@@ -51,7 +51,7 @@ async function getProductDetail(productId) {
 
 // 수정
 async function updateProduct(sendableResult, productId) {
-  return await fetch(`/api/product/update/${productId}`, {
+  return await fetch(`/api/product/update/id?=productId${productId}`, {
     headers: setHeaders({
       "Content-Type": "application/json",
     }),
@@ -66,13 +66,28 @@ async function updateProduct(sendableResult, productId) {
 
 // 삭제
 async function deleteProduct(productId) {
-  return await fetch(`/api/product/delete`, {
+  return await fetch(`/api/product/`, {
     headers: setHeaders({
       "Content-Type": "application/json",
     }),
     method: "GET",
     body: JSON.stringify({
       productId,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => data);
+}
+
+// 카테고리 가져오기
+async function category(category) {
+  return await fetch(`/api/product/category`, {
+    headers: setHeaders({
+      "Content-Type": "application/json",
+    }),
+    method: "GET",
+    body: JSON.stringify({
+      category,
     }),
   })
     .then((res) => res.json())
@@ -97,4 +112,5 @@ export {
   productId,
   updateProduct,
   deleteProduct,
+  category,
 };

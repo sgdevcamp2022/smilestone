@@ -79,6 +79,7 @@ const ProductDetail = (props) => {
     navigate("/product/edit", { state: { product } });
   };
 
+  console.log(product.category);
   return (
     <MainWrapper>
       <ImageWrapper />
@@ -117,7 +118,7 @@ const ProductDetail = (props) => {
             }}
           />
           <div>
-            <span>채팅 {product.chatRoom ? product.chatRoom.length : 0}</span>
+            <span>채팅 0</span>
             <span>조회 {product.view}</span>
             <FixAndDelete>
               <p>수정</p>

@@ -140,7 +140,7 @@ const Editor = (props) => {
   const [priceInput, setPriceInput] = useState(false); //₩ 색 변경위한 state
   const [allContents, setAllContents] = useState({
     title: "",
-    categoryId: NaN,
+    productId: NaN,
     sellerId: NaN,
     price: "0",
     content: "",
@@ -211,7 +211,7 @@ const Editor = (props) => {
 
   // 선택된 카테고리 저장
   const onCategorySelect = (e) => {
-    setAllContents({ ...allContents, categoryId: e.target.value });
+    setAllContents({ ...allContents, productId: e.target.value });
   };
 
   //게시글 내용을 저장하는 함수
@@ -246,7 +246,7 @@ const Editor = (props) => {
       alert("제목을 더 입력해주세요");
       return;
     }
-    if (!sendableResult.categoryId || sendableResult.categoryId === "0") {
+    if (!sendableResult.productId || sendableResult.productId === "0") {
       onCategoryNotSelected();
       alert("카테고리를 선택해주세요");
       return;
@@ -289,15 +289,14 @@ const Editor = (props) => {
             <CategorySelect
               ref={selectBox}
               required
-              id="categories"
-              name="categories"
+              id="category"
+              name="category"
               placeholder="카테고리"
               onChange={(e) => onCategorySelect(e)}
             >
               <PlaceHolder value="0" ref={categorySelection}>
                 카테고리 선택
               </PlaceHolder>
-
               {category.map((data) => (
                 <DropDown key={data.id} value={data.id}>
                   {data.categoryName}

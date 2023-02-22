@@ -16,10 +16,6 @@ function DetailDeleteModal(props) {
         replace: true,
         productInfoData: productInfoData,
       });
-    } else {
-      navigate("/district-info", {
-        replace: true,
-      });
     }
   };
 
@@ -29,8 +25,6 @@ function DetailDeleteModal(props) {
       getProductList().then((data) => {
         setProductInfoData(data.productList);
       });
-    } else {
-      //   deleteInfo(detailId);
     }
     goToList();
   };
@@ -49,7 +43,7 @@ function DetailDeleteModal(props) {
               e.stopPropagation();
             }}
           >
-            {isProduct ? `상품을 삭제하시겠어요?` : `글을 삭제하시겠어요?`}
+            글을 삭제하시겠어요?
           </Confirmation>
         </ConfirmBlock>
         <ConfirmationButton>
@@ -83,18 +77,18 @@ const DeleteModal = styled.div`
   align-items: center;
   // 스마트폰
   @media (max-width: 690px) {
-    width: 220px;
-    height: 105px;
+    width: 280px;
+    height: 180px;
   }
   // 아이패드 (모바일 버전)
   @media (min-width: 691px) and (max-width: 890px) {
     width: 280px;
-    height: 120px;
+    height: 180px;
   }
   // 모니터
   @media (min-width: 891px) {
     width: 280px;
-    height: 120px;
+    height: 180px;
   }
 `;
 
@@ -109,11 +103,11 @@ const ConfirmBlock = styled.div`
 
 const Alert = styled.p`
   font-weight: bold;
-  padding-top: 5%;
+  /* padding-top: 5%; */
 `;
 
 const Confirmation = styled.p`
-  padding: 5%;
+  /* padding: 5%; */
 `;
 
 const ConfirmationButton = styled.div`
@@ -128,7 +122,7 @@ const Cancel = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 120%;
+  font-size: 110%;
   width: 100%;
   height: 30%;
   color: #f37802;
@@ -142,7 +136,7 @@ const DeleteConfirm = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 120%;
+  font-size: 110%;
   color: #f37802;
   width: 100%;
   height: 30%;

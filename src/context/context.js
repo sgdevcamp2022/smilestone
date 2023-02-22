@@ -13,7 +13,7 @@ function userReducer(state, action) {
   const { type, payload } = action;
   switch (type) {
     case "LOGIN":
-      console.log(payload)
+      console.log(payload);
       return payload;
     case "LOGOUT":
       return initialUser;

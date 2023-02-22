@@ -11,12 +11,13 @@ import {
   NoTalkWrapper,
 } from "../../components/chat/ChatRoomContentStyled";
 import { UserContext } from "../../context/context";
-import {useParams} from "react-router-dom";
+
+import { useParams } from "react-router-dom";
 
 // 채팅 내용
 function Chat() {
-  const params = useParams()
-  const productId = params.id
+  const params = useParams();
+  const productId = params.id;
 
   const [message, setMessage] = useState("");
   const [messageHistory, setMessageHistory] = useState([]);
@@ -35,7 +36,7 @@ function Chat() {
   const onClickTestChatRoom = (sellerName) => () => {
     stompClient.subscribe(`/chat/${productId}`, (msg) => {
       const jsonFrame = JSON.parse(msg.body);
-      console.log(jsonFrame)
+      console.log(jsonFrame);
       setMessageHistory((prev) => [
         ...prev,
         {
@@ -64,7 +65,8 @@ function Chat() {
     );
   };
   const user = useContext(UserContext);
-  console.log(user)
+
+  console.log(user);
 
   return (
     <>
@@ -107,7 +109,7 @@ function Chat() {
 
                 <li
                   key={i}
-                  className={v.sender === ""+user.id ? "isMy" : "isOther"}
+                  className={v.sender === "" + user.id ? "isMy" : "isOther"}
                 >
                   <div className="timeWrapper">
                     <span>{textTime}</span>
