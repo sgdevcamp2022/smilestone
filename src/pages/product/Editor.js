@@ -4,7 +4,7 @@ import { usePrompt } from "../../hooks/blocker";
 import Quill from "quill";
 import "quill/dist/quill.bubble.css";
 import styled from "styled-components";
-import { postProduct } from "../../apis/product";
+import { postProduct, category } from "../../apis/product";
 import { UserContext } from "../../context/context";
 import LeavePageButton from "../../components/button/LeavePageButton";
 const EditorWrapper = styled.div``;
