@@ -25,5 +25,3 @@
 > 게시글 상세보기
 
 ![Web - POST](https://user-images.githubusercontent.com/94473725/215111961-7481f90f-60c9-4ff5-99a0-c026a2f779b0.png)
-
-> > > > > > > 0777479c6814755312a90a190bd41e027a0aed84
