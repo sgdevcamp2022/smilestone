@@ -19,9 +19,7 @@
 - Front-end 스택
   - React.js
   - TypeScript
-  - Styled-Components
-  - Recoil
-  - Storybook
+  - Context
   - Figma
 
 - Android 스택
